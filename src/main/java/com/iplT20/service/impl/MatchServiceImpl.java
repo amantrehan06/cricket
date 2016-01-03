@@ -102,13 +102,11 @@ public class MatchServiceImpl implements MatchService {
 	public List<HashMap<String, String>> getAllMatchesForUser(int userId) {
 		Session session = HibernateUtil.getInstance().getSession();
 
-		Query q = session
-				.createSQLQuery("select i.id,i.matchDetails,i.matchPlayDate, "
+		Query q = session.createSQLQuery("select i.id,i.matchDetails,i.matchPlayDate, "
 						+ "i.team1,i.team2,u.predictedStatus status, m.status actual from user_match u inner"
 						+ " join iplmatch i on i.id = u.match_id inner join match_status m on m.match_id = u.match_id and u.user_id=:id");
 
 		q.setParameter("id", userId);
-
 		List<Object> resultList = q.list();
 		session.close();
 		return processMatchRecords(resultList, "Y");
@@ -122,29 +120,18 @@ public class MatchServiceImpl implements MatchService {
 
 		session.createCriteria(MatchStatus.class, "ms")
 				.createCriteria("ms.match", "Match", JoinType.RIGHT_OUTER_JOIN)
-				.setProjection(
-						Projections
-								.projectionList()
-								.add(Projections.property("Match.id").as("id"))
-								.add(Projections.property("Match.matchDetails")
-										.as("matchDetails"))
-								.add(Projections
-										.property("Match.matchPlayDate").as(
-												"matchPlayDate"))
-								.add(Projections.property("Match.team1").as(
-										"team1"))
-								.add(Projections.property("Match.team2").as(
-										"team2"))
-								.add(Projections.property("ms.status").as(
-										"status"))).list();
+				.setProjection(Projections.projectionList().add(Projections.property("Match.id").as("id"))
+								.add(Projections.property("Match.matchDetails").as("matchDetails"))
+								.add(Projections.property("Match.matchPlayDate").as("matchPlayDate"))
+								.add(Projections.property("Match.team1").as("team1"))
+								.add(Projections.property("Match.team2").as("team2"))
+								.add(Projections.property("ms.status").as("status"))).list();
 
 		session.close();
-
 		return processMatchRecords(resultList, "N");
 	}
 
-	private List<HashMap<String, String>> processMatchRecords(
-			List<Object> list, String userFlag) {
+	private List<HashMap<String, String>> processMatchRecords(List<Object> list, String userFlag) {
 
 		List<HashMap<String, String>> maplist = new ArrayList<HashMap<String, String>>();
 

@@ -5,7 +5,7 @@
 <script src="../../js/jquery-ui.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>IPL 2015 Home</title>
+<title>IPL 2016 Home</title>
 <style type="text/css">
 .match1{
 background-color: #A9E2F3

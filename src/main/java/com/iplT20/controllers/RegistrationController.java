@@ -2,6 +2,8 @@ package com.iplT20.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.iplT20.util.Validations;
 public class RegistrationController {
 
 	RegistrationServiceImpl registrationServiceImpl = new RegistrationServiceImpl();
+	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView prepareForm(HttpServletRequest request) {
@@ -29,30 +32,20 @@ public class RegistrationController {
 		boolean isBlankAndNull = true;
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
-
-		if (!Validations.isNull(user.getEmail_id())
-				&& !Validations.isNull(user.getPassword())
-				&& !Validations.isNull(user.getEmp_id())
-				&& !Validations.isNull(user.getFirstName())
-				&& !Validations.isNull(user.getLastName())) {
-			if (!Validations.isBlank(user.getEmail_id())
-					&& !Validations.isBlank(user.getPassword())
-					&& !Validations.isBlank(user.getEmp_id())
-					&& !Validations.isBlank(user.getFirstName())
-					&& !Validations.isBlank(user.getLastName())) {
-				isBlankAndNull = false;
-			}
+		if(Validations.isNullorEmpty(user.getEmail_id(),user.getPassword(),user.getEmp_id(),user.getFirstName(),user.getLastName())){
+			logger.info("Input parameters are null or empty");
+			return modelAndView;
 		}
-		if (!isBlankAndNull) {
-				if (registrationServiceImpl.registerNewUser(user)) {
-					MailUtil.sendEmail(user.getEmail_id(), 
-					"Hi "+user.getFirstName()+" "+user.getLastName()+"\n\n"+"Thanks for Registering on IPL 2015 Application. Start Predicting now!!"+"\n\n"+"Regards,"+"\n"+"IPL ADMIN"
-				+"\n\n"+"http://www.sportcasts.in/iplT20", "REGISTRATION SUCCESSFUL - "+user.getFirstName()+" "+user.getLastName());
-					modelAndView.setViewName("regSuccess");
-					modelAndView.addObject("message",
-							"You have been successfully registered!!");
-				}
+		
+		if (registrationServiceImpl.registerNewUser(user)) {
+			MailUtil.sendEmail(user.getEmail_id(),"Hi " + user.getFirstName() + " " + user.getLastName() + "\n\n"
+							+ "Thanks for Registering on IPL 2015 Application. Start Predicting now!!" + "\n\n"
+							+ "Regards," + "\n" + "IPL ADMIN" + "\n\n" + "http://www.sportcasts.in/iplT20",
+					"REGISTRATION SUCCESSFUL - " + user.getFirstName() + " " + user.getLastName());
+			modelAndView.setViewName("regSuccess");
+			modelAndView.addObject("message", "You have been successfully registered!!");
 		}
+		
 		return modelAndView;
 	}
 }

@@ -4,9 +4,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/ipl2015</property>
-        <property name="connection.username">ipl2015</property>
-        <property name="connection.password">Victory@123@</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/cricket</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">12345</property>
         <property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="current_session_context_class">thread</property>

@@ -18,11 +18,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public boolean registerNewUser(User user) {
 		Session session = HibernateUtil.getInstance().getSession();
 		Transaction transaction = session.beginTransaction();
-		Query query1 = session
-				.createQuery("from User where email_id = :email_id");
+		Query query1 = session.createQuery("from User where email_id = :email_id");
 		query1.setParameter("email_id", user.getEmail_id());
-		Query query2 = session
-				.createQuery("from User where emp_id = :emp_id");
+		Query query2 = session.createQuery("from User where emp_id = :emp_id");
 		query2.setParameter("emp_id", user.getEmp_id());
 		
 		List<User> result1 = query1.list();

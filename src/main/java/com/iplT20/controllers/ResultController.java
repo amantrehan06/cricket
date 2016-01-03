@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,60 +19,68 @@ import com.iplT20.service.impl.ResultServiceImpl;
 public class ResultController {
 
 	ResultServiceImpl resultServiceImpl = new ResultServiceImpl();
+	private static final Logger logger = LoggerFactory.getLogger(ResultController.class);
+
 	@RequestMapping("/myScore")
 	public ModelAndView myScore(HttpServletRequest request){
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
 		
-		if (request.getSession(false) != null
-				&& request.getSession(false).getAttribute("userObj") != null) {
-			User user = (User) request.getSession(false)
-					.getAttribute("userObj");
-			if(user.getIsAdmin().equals("N")){
+		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			logger.info("Session is Null, Please relogin");
+			return modelAndView;
+		}
+		
+		User user = (User) request.getSession(false).getAttribute("userObj");
+		if (user.getIsAdmin().equals("N")) {
 			List<HashMap<String, String>> resultMap = resultServiceImpl.showResultForUser(user.getId());
-			resultMap.get(0).put("name", user.getFirstName()+" "+user.getLastName());
+			resultMap.get(0).put("name", user.getFirstName() + " " + user.getLastName());
 			resultMap.get(0).put("empid", user.getEmp_id());
-			modelAndView.addObject("score",resultMap);
+			modelAndView.addObject("score", resultMap);
 			modelAndView.setViewName("result");
-			}
+
 		}
 		return modelAndView;
 		
 	}
 	
 	@RequestMapping("/allScores")
-	public ModelAndView friendsScore(HttpServletRequest request){
-		
+	public ModelAndView friendsScore(HttpServletRequest request){		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
-		
-		if (request.getSession(false) != null
-				&& request.getSession(false).getAttribute("userObj") != null) {
-			List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
-			modelAndView.addObject("score",resultMap);
-			modelAndView.setViewName("result");
+
+		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			logger.info("Session is Null, Please relogin");
+			return modelAndView;
 		}
+		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
+		modelAndView.addObject("score", resultMap);
+		modelAndView.setViewName("result");
+
 		return modelAndView;
 		
 	}
 	
 	@RequestMapping("/graph")
 	public ModelAndView graph(HttpServletRequest request){
-		
+
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
-		
-		if (request.getSession(false) != null
-				&& request.getSession(false).getAttribute("userObj") != null) {
-			List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
-			List<String> finalVal = new ArrayList<String>();
-			for(int i=0;i<resultMap.size();i++){
-				finalVal.add(i,"["+resultMap.get(i).get("name")+"-"+resultMap.get(i).get("win")+"]");
-			}
-			modelAndView.addObject("finalList",finalVal);
-			modelAndView.setViewName("resultGraph");
+
+		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			logger.info("Session is Null, Please relogin");
+			return modelAndView;
 		}
+		
+		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
+		List<String> finalVal = new ArrayList<String>();
+		for (int i = 0; i < resultMap.size(); i++) {
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+		}
+		modelAndView.addObject("finalList", finalVal);
+		modelAndView.setViewName("resultGraph");
+
 		return modelAndView;
 		
 	}
@@ -80,38 +90,42 @@ public class ResultController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
-		
-		if (request.getSession(false) != null
-				&& request.getSession(false).getAttribute("userObj") != null) {
-			List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult1();
-			List<String> finalVal = new ArrayList<String>();
-			for(int i=0;i<resultMap.size();i++){
-				finalVal.add(i,"["+resultMap.get(i).get("name")+"-"+resultMap.get(i).get("win")+"]");
-			}
-			modelAndView.addObject("finalList",finalVal);
-			modelAndView.setViewName("resultGraph1");
+
+		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			logger.info("Session is Null, Please relogin");
+			return modelAndView;
 		}
+		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult1();
+		List<String> finalVal = new ArrayList<String>();
+		for (int i = 0; i < resultMap.size(); i++) {
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+		}
+		modelAndView.addObject("finalList", finalVal);
+		modelAndView.setViewName("resultGraph1");
+
 		return modelAndView;
 		
 	}
 	
 	@RequestMapping("/graph2")
 	public ModelAndView graph2(HttpServletRequest request){
-		
+
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
-		
-		if (request.getSession(false) != null
-				&& request.getSession(false).getAttribute("userObj") != null) {
-			List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult2();
-			List<String> finalVal = new ArrayList<String>();
-			for(int i=0;i<resultMap.size();i++){
-				finalVal.add(i,"["+resultMap.get(i).get("name")+"-"+resultMap.get(i).get("win")+"]");
-			}
-			modelAndView.addObject("finalList",finalVal);
-			modelAndView.setViewName("resultGraph2");
+
+		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			logger.info("Session is Null, Please relogin");
+			return modelAndView;
 		}
+		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult2();
+		List<String> finalVal = new ArrayList<String>();
+		for (int i = 0; i < resultMap.size(); i++) {
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+		}
+		modelAndView.addObject("finalList", finalVal);
+		modelAndView.setViewName("resultGraph2");
+
 		return modelAndView;
-		
+
 	}
 }
