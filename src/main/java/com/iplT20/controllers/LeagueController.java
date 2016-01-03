@@ -28,7 +28,6 @@ public class LeagueController {
 
 	@RequestMapping(value = "/league", method = RequestMethod.GET)
 	public ModelAndView prepareLeague(HttpServletRequest request) {
-
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/logout");
