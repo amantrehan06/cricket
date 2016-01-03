@@ -118,8 +118,7 @@ public class MatchServiceImpl implements MatchService {
 
 		List<Object> resultList =
 
-		session.createCriteria(MatchStatus.class, "ms")
-				.createCriteria("ms.match", "Match", JoinType.RIGHT_OUTER_JOIN)
+		session.createCriteria(MatchStatus.class, "ms").createCriteria("ms.match", "Match", JoinType.RIGHT_OUTER_JOIN)
 				.setProjection(Projections.projectionList().add(Projections.property("Match.id").as("id"))
 								.add(Projections.property("Match.matchDetails").as("matchDetails"))
 								.add(Projections.property("Match.matchPlayDate").as("matchPlayDate"))
@@ -186,6 +185,7 @@ public class MatchServiceImpl implements MatchService {
 					matchdate = cal.getTime();
 					currdate = (Date) formatter.parse(currDateString);
 				} catch (ParseException e) {
+					e.printStackTrace();
 				}
 				if (currdate.after(matchdate)) {
 					result.put("en", "d");
