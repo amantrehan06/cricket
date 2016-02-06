@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.t20.models.User;
@@ -41,6 +42,11 @@ public class LoginController {
 	@RequestMapping(value = "")
 	public String showIndex() {
 		return "index";
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String prepareForm(HttpServletRequest request) {
+		return "contact";
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
@@ -88,8 +94,7 @@ public class LoginController {
 	public ModelAndView doHome(HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/logout");
-
+		modelAndView.setViewName("redirect:/logout"); 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
@@ -150,13 +155,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String doLogout(HttpServletRequest request) {
+	public ModelAndView doLogout(HttpServletRequest request,RedirectAttributes redirectAttributes) {
 	
-		if (request.getSession(false) != null) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/");
+		//modelAndView.setViewName("index"); 
+		if (request.getSession(false) != null){
+			if(request.getSession(false).getAttribute("userObj")!=null){
+				redirectAttributes.addFlashAttribute("success", "Logged out successfully");
+			}else{
+				redirectAttributes.addFlashAttribute("failure", "Session Expired, Please re-login");
+			}
 			request.getSession(false).setAttribute("userObj",null);
 			request.getSession(false).invalidate();
 		}
-		return "redirect:/";
+		return modelAndView;
 
 	}
 }

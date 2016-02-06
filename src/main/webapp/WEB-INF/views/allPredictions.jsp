@@ -71,7 +71,7 @@
 <body>
 	<%@include file="includes/header.jsp"%>
 	<div align="right" style="margin: 2%">
-		<p align="center" class="form-style lead">YOUR FRIENDS PREDICTIONS FOR THIS MATCH</p>
+	<!-- 	<p align="center" class="form-style lead">YOUR FRIENDS PREDICTIONS FOR THIS MATCH</p> -->
 		<%@include file="includes/navigation.jsp"%>
 		<h3 align="center">Match - ${match}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date - ${date}</h3>
 		<br/>

@@ -56,6 +56,7 @@ public class LeagueController {
 		modelAndView.setViewName("redirect:/logout");
 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
 		}
@@ -88,6 +89,7 @@ public class LeagueController {
 		modelAndView.setViewName("redirect:/logout");
 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
 		}
@@ -127,6 +129,7 @@ public class LeagueController {
 		modelAndView.setViewName("redirect:/logout");
 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
 		}
@@ -145,6 +148,7 @@ public class LeagueController {
 		modelAndView.setViewName("redirect:/logout");
 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
 		}
@@ -180,6 +184,7 @@ public class LeagueController {
 		modelAndView.setViewName("redirect:/logout");
 
 		if (request.getSession(false) == null || request.getSession(false).getAttribute("userObj") == null) {
+			
 			logger.info("Session is Null, Please relogin");
 			return modelAndView;
 		}

@@ -33,14 +33,14 @@ public class ResultController {
 		}
 		
 		User user = (User) request.getSession(false).getAttribute("userObj");
-		if (user.getIsAdmin().equals("N")) {
+		/*if (user.getIsAdmin().equals("N")) {*/
 			List<HashMap<String, String>> resultMap = resultServiceImpl.showResultForUser(user.getId());
 			resultMap.get(0).put("name", user.getFirstName() + " " + user.getLastName());
 			resultMap.get(0).put("empid", user.getEmp_id());
 			modelAndView.addObject("score", resultMap);
 			modelAndView.setViewName("result");
 
-		}
+		/*}*/
 		return modelAndView;
 		
 	}
@@ -78,6 +78,7 @@ public class ResultController {
 		for (int i = 0; i < resultMap.size(); i++) {
 			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
 		}
+		modelAndView.addObject("size",resultMap.size());
 		modelAndView.addObject("finalList", finalVal);
 		modelAndView.setViewName("resultGraph");
 
@@ -85,7 +86,7 @@ public class ResultController {
 		
 	}
 	
-	@RequestMapping("/graph1")
+	/*@RequestMapping("/graph1")
 	public ModelAndView graph1(HttpServletRequest request){
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -105,9 +106,9 @@ public class ResultController {
 
 		return modelAndView;
 		
-	}
+	}*/
 	
-	@RequestMapping("/graph2")
+	/*@RequestMapping("/graph2")
 	public ModelAndView graph2(HttpServletRequest request){
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -127,5 +128,5 @@ public class ResultController {
 
 		return modelAndView;
 
-	}
+	}*/
 }

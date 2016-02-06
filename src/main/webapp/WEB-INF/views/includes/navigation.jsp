@@ -44,9 +44,9 @@ color: orange;
         <li><a class="link" href="/t20/home">HOME</a></li>
         <li><a class="link" href="/t20/myScore">MY SCORE</a></li>
         <li><a class="link" href="/t20/allScores">ALL SCORE</a></li>
-        <li><a class="link" href="/t20/graph1">TOURNAMENT 1</a></li>
-        <li><a class="link" href="/t20/graph2">TOURNAMENT 2</a></li>
-        <li><a class="link" href="/t20/graph">OVERALL TOURNAMENT</a></li>
+       <!--  <li><a class="link" href="/t20/graph1">TOURNAMENT 1</a></li>
+        <li><a class="link" href="/t20/graph2">TOURNAMENT 2</a></li> -->
+        <li><a class="link" href="/t20/graph">GRAPHS</a></li>
         <!-- <li><a class="link" href="/t20/teams">IPL TEAMS</a></li> -->
         <!-- <li><a class="link" href="/t20/league">LEAGUE</a></li>
         <li><a class="link" href="/t20/league/rules">LEAGUE RULES</a></li>-->

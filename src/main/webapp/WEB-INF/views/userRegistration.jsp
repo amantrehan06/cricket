@@ -12,7 +12,7 @@
 	<br/>
 	<!-- <div class="form-style"> -->
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> 
-   <div class="modal-dialog"  style="margin-left:20px; margin-top:20px;"> 
+   <div class="modal-dialog"  style="margin-left:10%; margin-top:10px;"> 
   <div class="modal-content"> 
 <div class="container">
   <div class="row">
@@ -45,20 +45,21 @@
              <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
           <h1 class="text-center">Register</h1>
+         
      	 </div>
      	 <div class="modal-body">   
   		 	<div class="control-group">
               <label class="control-label" for="email_id">Email ID</label>
               <div class="controls">
-                <input type="text" id="email_id" name="email_id" placeholder="" class="form-control input-lg" required>
-                <p class="help-block">Personal Email ID(No Offical Email IDS please - Strictly refused)</p>
+                <input type="text" id="email_id" name="email_id" placeholder="No Offical Email Id - Strictly refused" class="form-control input-lg" required>
+                <!-- <p class="help-block">Personal Email ID(No Offical Email IDS please - Strictly refused)</p> -->
               </div>
             </div>
             
             <div class="control-group">
               <label class="control-label" for="password">Password</label>
               <div class="controls">
-                <input type="text" id="password" name="password" placeholder="" class="form-control input-lg" required>
+                <input type="text" id="password" name="password" placeholder="Password" class="form-control input-lg" required>
                 <p class="help-block"></p>
               </div>
             </div>
@@ -66,15 +67,15 @@
             <div class="control-group">
               <label class="control-label" for="emp_id">Unique Id</label>
               <div class="controls">
-                <input type="text" id="emp_id" name="emp_id" placeholder="" class="form-control input-lg" required>
-                <p class="help-block">Uniqe ID (can be DOB ex: 2nd July 1988 can be mentioned as 271988 )</p>
+                <input type="text" id="emp_id" name="emp_id" placeholder="Uniqe ID" class="form-control input-lg" required>
+                <!-- <p class="help-block"></p> -->
               </div>
             </div>
             
             <div class="control-group">
               <label class="control-label" for="firstName">First Name</label>
               <div class="controls">
-                <input type="text" id="firstName" name="firstName" placeholder="" class="form-control input-lg" required>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="form-control input-lg" required>
                 <p class="help-block"></p>
               </div>
             </div>
@@ -82,11 +83,12 @@
             <div class="control-group">
               <label class="control-label" for="lastName">Last Name</label>
               <div class="controls">
-                <input type="text" id="lastName" name="lastName" placeholder="" class="form-control input-lg" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control input-lg" required>
                 <p class="help-block"></p>
               </div>
             </div>         
          </div>
+           <span><a href="/t20/">Back</a></span> 
            <div class="form-group">
         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Register"/>
         </div>      

@@ -21,12 +21,18 @@
 		var grid = arr[0].toString().replace("]", "").replace("[","").replace("[", "");
 		grid = grid.substr(grid.indexOf("-") + 1,grid.length);
 		var grVal = parseInt(grid)+1;
-
+		var size = ${size};
+		var length = size *35;
+		
+		/* if(length<1000){
+			length=1000
+		} */
+		
 		for (var i = 0; i < arr.length; i++) {
 			var completeText = arr[i].toString().replace("]", "").replace("[","").replace("[", "");
 			var name = completeText.substr(0, completeText.indexOf("-"));
 			var win = completeText.substr(completeText.indexOf("-") + 1,completeText.length);
-			data.addRow([name, parseInt(win), 'color:orange']);
+			data.addRow([name, parseInt(win), 'color:SteelBlue ']);
 		}
 		var options = {
 			title : 'Players Correct Predictions',
@@ -36,7 +42,7 @@
 				bottom : 0,
 				width : '60%'
 			},
-			height:'1400',
+			 height:length, 
 			hAxis : {
 				title : 'Correct Predictions',
 				minValue : 0,
@@ -45,6 +51,7 @@
 			vAxis : {
 				title : 'Players'
 			}
+			
 		};
 
 		var chart = new google.visualization.BarChart(document
@@ -60,8 +67,7 @@
 	<div align="right" style="margin: 2%">
 		<%@include file="includes/navigation.jsp"%>
 		
-	<div id="chart_div"
-		style="padding-left: 3%; padding-right: 3%"></div>
+	<div id="chart_div"	style="padding-left: 3%; padding-right: 3%;"></div>
 		</div>
 	<%@include file="includes/footer.jsp"%>
 </body>

@@ -51,26 +51,45 @@ if (sc.getAttribute("message")!= null){message=sc.getAttribute("message").toStri
       <div class="modal-body">   
           <form class="form col-md-12 center-block" method="POST" action="/t20/home" method = "post">
             <div class="form-group">
-              <input type="text" name="userEmail" class="form-control input-lg" placeholder="Email">
+              <input type="text" name="userEmail" class="form-control input-lg" placeholder="Email" required>
             </div>
             <div class="form-group">
-              <input type="password"  name="userPassword" class="form-control input-lg" placeholder="Password">
+              <input type="password"  name="userPassword" class="form-control input-lg" placeholder="Password" required>
             </div>
             <div class="form-group">
               <button class="btn btn-primary btn-lg btn-block">Sign In</button>
               <span class="pull-right"><a href="/t20/register">New User Registration</a></span>
-             <%--  <span><a href="#">Need help?</a></span> --%>
+               <span><a href="/t20/contact">Need help?</a></span> 
               <p style="color: red"><%=message%></p>
             </div>
+            
           </form>
-      </div>
+          
+      </div>     
       <div class="modal-footer">
           <div class="col-md-12">
           <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button> -->
-		  </div>	
+		  </div>		   	
       </div>
+     
   </div>
+  
   </div>
+ 
+   <div class="col-lg-5 col-md-push-1">
+            <div class="col-md-12">
+           <c:if test="${not empty success}">
+           <div class="alert alert-success">
+                    <strong><span class="glyphicon glyphicon-ok"></span> ${success} </strong>
+                </div>
+           </c:if>
+              <c:if test="${not empty failure}">   
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-remove"></span><strong> ${failure}</strong>
+                </div>
+                </c:if>
+            </div>
+        </div>
 </div>
 
   </body>

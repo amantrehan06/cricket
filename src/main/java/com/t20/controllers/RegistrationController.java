@@ -21,6 +21,7 @@ public class RegistrationController {
 	RegistrationServiceImpl registrationServiceImpl = new RegistrationServiceImpl();
 	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView prepareForm(HttpServletRequest request) {
 		return new ModelAndView("userRegistration", "command", new User());
@@ -38,12 +39,15 @@ public class RegistrationController {
 		}
 		
 		if (registrationServiceImpl.registerNewUser(user)) {
-			MailUtil.sendEmail(user.getEmail_id(),"Hi " + user.getFirstName() + " " + user.getLastName() + "\n\n"
+		/*	MailUtil.sendEmail(user.getEmail_id(),"Hi " + user.getFirstName() + " " + user.getLastName() + "\n\n"
 							+ "Thanks for Registering on IPL 2015 Application. Start Predicting now!!" + "\n\n"
 							+ "Regards," + "\n" + "IPL ADMIN" + "\n\n" + "http://www.sportcasts.in/t20",
 					"REGISTRATION SUCCESSFUL - " + user.getFirstName() + " " + user.getLastName());
-			modelAndView.setViewName("regSuccess");
-			modelAndView.addObject("message", "You have been successfully registered!!");
+	*/		modelAndView.setViewName("index");
+			modelAndView.addObject("success", "You have been successfully registered!!");
+		}else{
+			modelAndView.addObject("failure", "Sorry! Email Id already Registered");
+			modelAndView.setViewName("index");
 		}
 		
 		return modelAndView;

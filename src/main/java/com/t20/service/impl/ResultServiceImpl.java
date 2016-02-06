@@ -71,9 +71,9 @@ public class ResultServiceImpl implements ResultService{
 			HashMap<String,String> result= new HashMap<String, String>();
 			
 			BigInteger win = new BigInteger(columns[0]==null ? "0" : String.valueOf(columns[0]));
-			if(String.valueOf(columns[1]).equals("0")){
+			/*if(String.valueOf(columns[1]).equals("0")){
 				continue;
-			}
+			}*/
 			q = session.createSQLQuery("select COALESCE(count(*),0) np from user_match u inner join match_status m on m.match_id=u.match_id and m.status <> 'NULL' and u.user_id = :id and "
 					+ "u.predictedStatus = 'NOT PREDICTED YET'");
 			q.setParameter("id", Integer.parseInt(String.valueOf(columns[4])));
@@ -85,7 +85,8 @@ public class ResultServiceImpl implements ResultService{
 			result.put("name",String.valueOf(columns[2])+" "+String.valueOf(columns[3]));
 			result.put("total", total.toString());
 			result.put("np", np.toString());
-			float ac = (Float.parseFloat(win.toString())/(Float.parseFloat(total.subtract(npAndWin).toString())+Float.parseFloat(win.toString())))*100F;
+			//float ac = (Float.parseFloat(win.toString())/(Float.parseFloat(total.subtract(npAndWin).toString())+Float.parseFloat(win.toString())))*100F;
+			float ac = (Float.parseFloat(win.toString())/(Float.parseFloat(total.toString())))*100F;
 			result.put("ac", String.valueOf(Math.round(ac)));
 			result.put("loss", total.subtract(npAndWin).toString());
 			
@@ -94,7 +95,7 @@ public class ResultServiceImpl implements ResultService{
 		return listOfMap;
 	}
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showAllResult1() {
 		Session session = HibernateUtil.getInstance().getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
@@ -160,6 +161,6 @@ public class ResultServiceImpl implements ResultService{
 			listOfMap.add(result);
 		}
 		return listOfMap;
-	}
+	}*/
 
 }

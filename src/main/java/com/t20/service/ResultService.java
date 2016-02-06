@@ -7,7 +7,7 @@ public interface ResultService {
 	
 	public List<HashMap<String, String>> showResultForUser(int userid);
 	public List<HashMap<String, String>> showAllResult0();
-	public List<HashMap<String, String>> showAllResult1();
-	public List<HashMap<String, String>> showAllResult2();
+/*	public List<HashMap<String, String>> showAllResult1();
+	public List<HashMap<String, String>> showAllResult2();*/
 
 }
