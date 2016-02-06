@@ -4,12 +4,12 @@
 if (request.getSession(false).getAttribute("username")!= null)
 {user=request.getSession(false).getAttribute("username").toString();}%>
 <style>
-.masthead {
+#masthead {
     background: url("images/pic4.png") no-repeat scroll center top / cover #223577;
     position: relative;
-    color: #FFF;
+     color: #FFF; 
     z-index: 10;
-    padding-top: 50px;
+    /* padding-top: 50px; */
 }
 .sitelogo {
 	background-image: url("images/pic6.jpg");
@@ -37,21 +37,26 @@ color: orange;
   ga('send', 'pageview');
 
 </script>
-<div class="masthead">
-<div align="center" class="navbar">
+<!-- <div class="masthead"> -->
+<div align="center" class="navbar" id="masthead">
 <div class="container-fluid">
  <ul class="nav navbar-nav">
-        <li><a class="link" href="/iplT20/home">HOME</a></li>
-        <li><a class="link" href="/iplT20/myScore">MY SCORE</a></li>
-        <li><a class="link" href="/iplT20/allScores">ALL SCORE</a></li>
-        <li><a class="link" href="/iplT20/graph1">TOURNAMENT 1</a></li>
-        <li><a class="link" href="/iplT20/graph2">TOURNAMENT 2</a></li>
-        <li><a class="link" href="/iplT20/graph">OVERALL TOURNAMENT</a></li>
-        <!-- <li><a class="link" href="/iplT20/teams">IPL TEAMS</a></li> -->
-        <li><a class="link" href="/iplT20/league">LEAGUE</a></li>
-        <li><a class="link" href="/iplT20/league/rules">LEAGUE RULES</a></li>
-        <li><a class="link" href="/iplT20/logout">LOGOUT - <%=user.toUpperCase()%></a></li>
-      </ul>
+        <li><a class="link" href="/t20/home">HOME</a></li>
+        <li><a class="link" href="/t20/myScore">MY SCORE</a></li>
+        <li><a class="link" href="/t20/allScores">ALL SCORE</a></li>
+        <li><a class="link" href="/t20/graph1">TOURNAMENT 1</a></li>
+        <li><a class="link" href="/t20/graph2">TOURNAMENT 2</a></li>
+        <li><a class="link" href="/t20/graph">OVERALL TOURNAMENT</a></li>
+        <!-- <li><a class="link" href="/t20/teams">IPL TEAMS</a></li> -->
+        <!-- <li><a class="link" href="/t20/league">LEAGUE</a></li>
+        <li><a class="link" href="/t20/league/rules">LEAGUE RULES</a></li>-->
+        </ul>
+        
+         <ul class="nav navbar-nav navbar-right">
+               <li><a class="link" href="/t20/logout">LOGOUT - <%=user.toUpperCase()%></a></li>
+            </ul>
+       
+      
 </div>
 </div>
 </div>

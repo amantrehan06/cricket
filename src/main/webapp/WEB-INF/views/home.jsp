@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<script src="../../js/jquery-ui.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>IPL 2016 Home</title>
+ 
 <style type="text/css">
 .match1{
 background-color: #A9E2F3
@@ -15,8 +15,68 @@ background-color: #E1F5A9
 }
 </style>
 </head>
-<body>
+<body >
 	<%@include file="includes/header.jsp"%>
+	
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   <!-- <link rel="stylesheet" href="/t20/css/jquery-ui-timepicker-addon.css"></link>
+    <script src="/t20/js/jquery-ui-timepicker-addon.js"></script>  -->
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css">
+  
+  <script>
+  $(function() { 
+ 	 $('#timedate').datetimepicker();
+  });
+  
+  var teamList = "";
+  var teamCode = "";
+  $.ajax({
+	  type: "GET",
+	  url: "/t20/teamsList",
+	  async: false,
+	  success: function(result){
+		  teamList = JSON.parse(result);
+  }});
+  
+  $.ajax({
+	  type: "GET",
+	  url: "/t20/teamsCode",
+	  async: false,
+	  success: function(result){
+		  teamCode = JSON.parse(result);
+  }});
+  
+  $(function() {  
+    $("#teamListName").autocomplete({
+      source: teamList
+    });
+  });
+  
+  $(function() {  
+	    $('#teamListCode').autocomplete({
+	      source: teamCode
+	    });
+	  });
+  
+  $(function() {  
+	    $('#teamListCode1').autocomplete({
+	      source: teamCode
+	    });
+	  });
+  
+  $(function() {  
+	    $('#teamListCode2').autocomplete({
+	      source: teamCode
+	    });
+	  });
+
+  </script>
+  
 	<div align="right" style="margin: 2%">
 	<%@include file="includes/navigation.jsp"%>
 	<div class="form-style">
@@ -59,14 +119,14 @@ background-color: #E1F5A9
 				<c:when test="${row.c== 1}">
 					<tr class="match1">
 						<td><%=count%></td>
-						<td><a href="/iplT20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
+						<td><a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
 						<td>${row.matchPlayDate}</td>
 						<td><c:choose>
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
-										<a href="/iplT20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
-										<a href="/iplT20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/iplT20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
+										<a href="/t20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
+										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
+										<a href="/t20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
 									</c:if>
 									<c:if test="${row.en == 'd'}">
 										<span style="color: #585858;">${row.team1}&nbsp;/
@@ -77,10 +137,10 @@ background-color: #E1F5A9
 								<c:otherwise>
 									<c:if test="${row.status == 'NULL'}">
 										<a
-											href="/iplT20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
+											href="/t20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a
-											href="/iplT20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/iplT20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
+											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
+										<a href="/t20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
 									</c:if>
 									<c:if test="${row.status != 'NULL'}">
 										${row.status}
@@ -113,14 +173,14 @@ background-color: #E1F5A9
 					<c:otherwise>
 					<tr class="match2">
 						<td><%=count%></td>
-						<td><a href="/iplT20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
+						<td><a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
 						<td>${row.matchPlayDate}</td>
 						<td><c:choose>
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
-										<a href="/iplT20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
-										<a href="/iplT20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/iplT20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
+										<a href="/t20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
+										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
+										<a href="/t20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
 									</c:if>
 									<c:if test="${row.en == 'd'}">
 										<span style="color: #585858;">${row.team1}&nbsp;/
@@ -131,10 +191,10 @@ background-color: #E1F5A9
 								<c:otherwise>
 									<c:if test="${row.status == 'NULL'}">
 										<a
-											href="/iplT20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
+											href="/t20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a
-											href="/iplT20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/iplT20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
+											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
+										<a href="/t20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
 									</c:if>
 									<c:if test="${row.status != 'NULL'}">
 										${row.status}
@@ -146,7 +206,7 @@ background-color: #E1F5A9
 						</c:if>
 						<c:if test="${user == 'admin'}">
 						${adjustButtonFlag}
-							<td><form action="/iplT20/adjust" method="post">
+							<td><form action="/t20/adjust" method="post">
 									<c:if test="${row.adjustButtonFlag =='F'}">
 										<input type="submit" value="Adjust" class = "btn btn-primary">
 									</c:if>
@@ -174,22 +234,22 @@ background-color: #E1F5A9
 			<div align="center">
 				<h3>Add New Match</h3>
 			</div>
-			<form method="POST" action="/iplT20/newMatch" class="form-style">
+			<form method="POST" action="/t20/newMatch" class="form-style">
 				<div class="row">
 					<div class="col-lg-3">
 						<label for="matchDetails">Match Details</label> <input type="text"
 							class="form-control" name="matchDetails"></input>
 					</div>
 					<div class="col-lg-3">
-						<label for="matchPlayDate">Match Play Date</label> <input
+						<label for="matchPlayDate">Match Play Date</label> <input id = "timedate"
 							type="text" class="form-control" name="matchPlayDate"></input>
 					</div>
 					<div class="col-lg-3">
-						<label for="team1">Team 1</label> <input type="text"
+						<label for="team1">Team 1</label> <input type="text" id="teamListCode1"
 							class="form-control" name="team1"></input>
 					</div>
 					<div class="col-lg-3">
-						<label for="team2">Team 2</label> <input type="text"
+						<label for="team2">Team 2</label> <input type="text" id="teamListCode2"
 							class="form-control" name="team2"></input>
 					</div>
 				</div>
@@ -199,14 +259,14 @@ background-color: #E1F5A9
 			<div align="center">
 				<h3>Add Teams</h3>
 			</div>
-			<form method="POST" action="/iplT20/newTeam" class="form-style">
+			<form method="POST" action="/t20/newTeam" class="form-style">
 				<div class="row">
 					<div class="col-lg-3">
-						<label for="teamName">Team Name</label> <input type="text"
+						<label for="teamName">Team Name</label> <input id="teamListName" type="text"
 							class="form-control" name="teamName"></input>
 					</div>
 					<div class="col-lg-3">
-						<label for="teamCode">Team Code</label> <input type="text"
+						<label for="teamCode">Team Code</label> <input type="text" id="teamListCode"
 							class="form-control" name="teamCode"></input>
 					</div>
 					<div class="col-lg-3">

@@ -14,14 +14,14 @@
         <property name="show_sql">false</property>
         
         
-        <mapping class="com.iplT20.models.User"/>
-        <mapping class="com.iplT20.models.Match"/>
-        <mapping class="com.iplT20.models.Team"/>
-        <mapping class="com.iplT20.models.MatchStatus"/>
-        <mapping class="com.iplT20.models.UserMatch"/>
-        <mapping class="com.iplT20.models.League"/>
-        <mapping class="com.iplT20.models.LeagueUser"/>
-        <mapping class="com.iplT20.models.LeagueUserMatch"/>
+        <mapping class="com.t20.models.User"/>
+        <mapping class="com.t20.models.Match"/>
+        <mapping class="com.t20.models.Team"/>
+        <mapping class="com.t20.models.MatchStatus"/>
+        <mapping class="com.t20.models.UserMatch"/>
+        <mapping class="com.t20.models.League"/>
+        <mapping class="com.t20.models.LeagueUser"/>
+        <mapping class="com.t20.models.LeagueUserMatch"/>
         
     </session-factory>
 </hibernate-configuration>

@@ -73,7 +73,7 @@
 		<h3 align="center">POINT STATS : League - ${leagueName}</h3>
 		<br/>
 		<div align="left" style="float: left;">
-        	<form action="/iplT20/league/leagueMatches" method="post">
+        	<form action="/t20/league/leagueMatches" method="post">
 			<input type="hidden" name="id" value="${leagueId}">
 			<input type="submit" value="LEAGUE HOME" class ="btn btn-primary">
 		</form>

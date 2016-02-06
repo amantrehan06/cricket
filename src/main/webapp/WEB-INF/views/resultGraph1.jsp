@@ -47,7 +47,8 @@
 				gridlines: {count: grVal}
 			},
 			vAxis : {
-				title : 'Players'
+				title : 'Players',
+				textStyle:{fontSize: '12', paddingRight: '100',marginRight: '100'}
 			}
 		};
 

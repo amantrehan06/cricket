@@ -56,7 +56,7 @@ function validateFields(val) {
 		<h3 align="center">League - ${leagueName}</h3>
 		<br />
 		<ul class="nav navbar-nav">
-			<li><form action="/iplT20/league/leaderBoard" method=post>
+			<li><form action="/t20/league/leaderBoard" method=post>
 					<input type="submit" value="LEADER BOARD" class="btn btn-primary">
 					<input type="hidden" name="league" value="${league}">
 				</form></li>
@@ -86,7 +86,7 @@ function validateFields(val) {
 						<td>${row.matchDetails}</td>
 						<td>${row.matchPlayDate}</td>
 						<c:if test="${row.bidFlag == 0}">
-							<td><form action="/iplT20/league/saveBid" method="post"
+							<td><form action="/t20/league/saveBid" method="post"
 									onsubmit="return validateFields(${row.id});">
 									<c:if test="${row.en == 'e'}">
 										<select id="team${row.id}" name="team${row.id}"
@@ -126,7 +126,7 @@ function validateFields(val) {
 							</select> <input type="text" value="${row.playAmount}" disabled="disabled">
 						</c:if>
 						<c:if test="${row.en == 'd'}">
-							<td><form action="/iplT20/league/viewBidStats" method=post>
+							<td><form action="/t20/league/viewBidStats" method=post>
 									<input type="submit" value="GET STATS" class="btn btn-primary">
 									<input type="hidden" name="team1" value="${row.team1}">
 									<input type="hidden" name="team2" value="${row.team2}">
@@ -135,7 +135,7 @@ function validateFields(val) {
 								</form></td>
 						</c:if>
 						<c:if test="${row.en == 'e'}">
-							<td><form action="/iplT20/league/viewBidStats" method=post>
+							<td><form action="/t20/league/viewBidStats" method=post>
 									<input type="hidden" name="team1"
 										value="${row.team1}"> <input type="hidden"
 										name="team2" value="${row.team2}"> <input

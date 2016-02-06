@@ -12,7 +12,7 @@
 		<%@include file="includes/navigation.jsp"%>
 		<h4 align="center">LEAGUE : ${leagueName}</h4>
 		<div align="center">
-		<form method="post" action="/iplT20/league/join">
+		<form method="post" action="/t20/league/join">
 			<input type="hidden" name="leagueId" value="${leagueId}">
 		</form>
 		</div>

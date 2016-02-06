@@ -9,7 +9,7 @@
 <body style="background-color: #E0F2CD">
 <%@include file="includes/header.jsp"%>
 <p align="left" class="form-style lead">${message} &nbsp;&nbsp;&nbsp;
- Please click <a href ="/iplT20">here</a> to login to your account.</p>
+ Please click <a href ="/t20">here</a> to login to your account.</p>
  <%@include file="includes/footer.jsp"%>
 </body>
 </html>

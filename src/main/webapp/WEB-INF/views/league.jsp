@@ -24,7 +24,7 @@ function validateName() {
 	<%@include file="includes/header.jsp"%>
 	<div align="right" style="margin: 2%">
 		<%@include file="includes/navigation.jsp"%>
-		<h4 align="center" style="color: red;">PLEASE DO READ THE LEAGUE <a href="/iplT20/league/rules">RULES</a> ON THE ADJACENT LINK</h4>
+		<h4 align="center" style="color: red;">PLEASE DO READ THE LEAGUE <a href="/t20/league/rules">RULES</a> ON THE ADJACENT LINK</h4>
 		<br/>
 		<div align="left" style="float:left;width: 30%;">
 		<h4 align="center">Join Available Leagues</h4>
@@ -40,7 +40,7 @@ function validateName() {
 				<c:forEach items="${leagueList}" var="row">
 					<tr>
 						<td><%=count%></td>
-						<td><form action="/iplT20/league/members" method="post">
+						<td><form action="/t20/league/members" method="post">
 						<input type="hidden" name="id" value="${row.id}">
 						<input type="submit" value="${row.league_name}" class ="btn btn-primary">
 						</form> </td>
@@ -55,7 +55,7 @@ function validateName() {
 		</div>
 		<div align="center" style="float:left;width: 30%;padding-left: 6%;">
 			<h4 align="center">Create Your League</h4>
-			<form  method="POST" action="/iplT20/league/new" onsubmit="return validateName();">
+			<form  method="POST" action="/t20/league/new" onsubmit="return validateName();">
 			</form>
 			<c:if test="${cflag=='P'}">
 				<h5>Please save this code.</h5><h5 align="center" style="color: green">${leagueAddMessage}</h5><h5> People who want to join your league will need it from you !!</h5>
@@ -82,7 +82,7 @@ function validateName() {
 				<c:forEach items="${leagueUserList}" var="row">
 					<tr>
 						<td><%=count2%></td>
-						<td><form action="/iplT20/league/leagueMatches" method="post">
+						<td><form action="/t20/league/leagueMatches" method="post">
 						<input type="hidden" name="id" value="${row.league.id}">
 						<input type="submit" value="${row.league.league_name}" class ="btn btn-primary">
 						</form>

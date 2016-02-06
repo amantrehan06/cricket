@@ -7,8 +7,10 @@
 <%@taglib uri= "http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/t20/css/custom.css"></link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 .form-style {
 	margin: 20px;20px;20px;20px;
@@ -27,7 +29,9 @@ function dateTimer() {
     hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
     minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
     second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+    if (document.getElementById != null){
     document.getElementById("currdate").innerHTML = "Current Time :"+" "+ year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+    }
 }
 </script>
 
