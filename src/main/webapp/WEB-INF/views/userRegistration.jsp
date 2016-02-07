@@ -11,43 +11,66 @@
 	<!-- <p align="center" class="lead">New User Registration</p> -->
 	<br/>
 	<!-- <div class="form-style"> -->
-    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> 
+   
+   
+   
+   <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" style="margin-left:10%; margin-top:50px;">
+  <div class="modal-content">
+      <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+          <h1 class="text-center">Register</h1>
+      </div>
+      <div class="modal-body">   
+          <form class="form col-md-12 center-block" method="POST" action="/t20/register/new" method = "post">
+            <div class="form-group">
+              <input type="text" name="email_id" class="form-control input-lg" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="password" class="form-control input-lg" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="emp_id" class="form-control input-lg" placeholder="Unique Id" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="firstName" class="form-control input-lg" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+              <input type="password"  name="firstName" class="form-control input-lg" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" value="Register">Register</button>
+              <span><a href="/t20/">Back</a></span>
+               <span class="pull-right"><a href="/t20/contact">Need help?</a></span>               
+            </div>
+                 
+            
+          </form>
+          
+      </div>     
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button> -->
+		  </div>		   	
+      </div>
+   
+   
+   
+   <%--  <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> 
    <div class="modal-dialog"  style="margin-left:10%; margin-top:10px;"> 
   <div class="modal-content"> 
 <div class="container">
   <div class="row">
   	<div class="col-md-6">
+  	 <div class="modal-body">  	 
     <form:form method="POST" class="form col-md-12 center-block" action="/t20/register/new">
-      <%--   <div class="row">
-  			 <div class="col-lg-3">
-  				<form:label path="email_id">Personal Email ID(No Offical Email IDS please - Strictly refused)</form:label>
-            	<form:input type="text" class="form-control" path="email_id" id="email"></form:input>
-  			</div> 
-  			 <div class="col-lg-3">
-  				<form:label path="password">Password</form:label>
-            	<form:input type="password" class="form-control" path="password" id="password"></form:input>
-  			</div> 
-  			 <div class="col-lg-3">
-  				<form:label path="emp_id">Uniqe ID (can be DOB ex: 2nd July 1988 can be mentioned as 271988 )</form:label>
-            	<form:input type="text" class="form-control" path="emp_id" id="emp_id"></form:input>
-  			</div> 
-  			 <div class="col-lg-3">
-  				<form:label path="firstName">First Name</form:label>
-            	<form:input type="text" class="form-control" path="firstName" id="firstName"></form:input>
-  			</div> 
-  			 <div class="col-lg-3">
-  				<form:label path="lastName">Last Name</form:label>
-            	<form:input type="text" class="form-control" path="lastName" id="lastName"></form:input>
-  			</div> 
-  		</div>
-  		<br> --%>
-  		
+    
              <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
           <h1 class="text-center">Register</h1>
          
      	 </div>
-     	 <div class="modal-body">   
+     	  
   		 	<div class="control-group">
               <label class="control-label" for="email_id">Email ID</label>
               <div class="controls">
@@ -100,17 +123,7 @@
 
 </div>
 </div>
-</div>
-<!-- <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                </div>
-                <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                </div>
-            </div>
-        </div> -->
+</div> --%>
 
 <%@include file="includes/footer.jsp"%>
 </body>
