@@ -51,7 +51,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public ModelAndView doLogin(HttpServletRequest request) {
-
 		ModelAndView modelAndView = new ModelAndView();
 		// Default View
 		modelAndView.setViewName("redirect:/logout");

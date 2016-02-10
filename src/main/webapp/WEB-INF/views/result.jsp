@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>IPL 2015 Predictions Result</title>
+<title>World Cup T20 Predictions Result</title>
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>

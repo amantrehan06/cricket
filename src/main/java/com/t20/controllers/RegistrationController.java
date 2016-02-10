@@ -40,7 +40,7 @@ public class RegistrationController {
 		
 		if (registrationServiceImpl.registerNewUser(user)) {
 		/*	MailUtil.sendEmail(user.getEmail_id(),"Hi " + user.getFirstName() + " " + user.getLastName() + "\n\n"
-							+ "Thanks for Registering on IPL 2015 Application. Start Predicting now!!" + "\n\n"
+							+ "Thanks for Registering on IPL 2016 Application. Start Predicting now!!" + "\n\n"
 							+ "Regards," + "\n" + "IPL ADMIN" + "\n\n" + "http://www.sportcasts.in/t20",
 					"REGISTRATION SUCCESSFUL - " + user.getFirstName() + " " + user.getLastName());
 	*/		modelAndView.setViewName("index");

@@ -60,7 +60,7 @@
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>IPL 2015 Predictions Result Graph</title>
+<title>World Cup T20 Predictions Result Graph</title>
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>IPL 2015 League Members</title>
+<title>World Cup T20 League Members</title>
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>

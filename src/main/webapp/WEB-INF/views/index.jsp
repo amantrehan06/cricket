@@ -13,7 +13,7 @@ if (sc.getAttribute("message")!= null){message=sc.getAttribute("message").toStri
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IPL 2015</title>
+    <title>World Cup T20</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -26,7 +26,7 @@ if (sc.getAttribute("message")!= null){message=sc.getAttribute("message").toStri
     <link href="css/signin.css" rel="stylesheet">
   </head>
   <body class="trophy5">
-  <%--   <h1 align="center">IPL 2015 ${message} </h1>
+  <%--   <h1 align="center">World Cup T20 ${message} </h1>
     <div class="container">
       <form  method="POST" action="/t20/home" class="form-signin" method = "post">
         <h2 class="form-signin-heading">Login</h2>
