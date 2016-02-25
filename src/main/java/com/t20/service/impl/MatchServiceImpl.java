@@ -14,6 +14,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.sql.JoinType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.t20.models.League;
 import com.t20.models.LeagueUser;
@@ -24,13 +26,14 @@ import com.t20.models.User;
 import com.t20.models.UserMatch;
 import com.t20.service.MatchService;
 import com.t20.util.HibernateUtil;
-
+@Service
 public class MatchServiceImpl implements MatchService {
+	@Autowired HibernateUtil hibernateUtil;
 
 	public boolean saveMatchPrediction(int id, String response, int userId) {
 
 		boolean successflag = false;
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		UserMatch um = new UserMatch();
 		Transaction tx = session.beginTransaction();
 		um.setPredictedStatus(response);
@@ -100,7 +103,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@SuppressWarnings({ "unchecked" })
 	public List<HashMap<String, String>> getAllMatchesForUser(int userId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 
 		Query q = session.createSQLQuery("select i.id,i.matchDetails,i.matchPlayDate, "
 						+ "i.team1,i.team2,u.predictedStatus status, m.status actual from user_match u inner"
@@ -114,7 +117,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> getAllMatchesForAdmin() {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 
 		List<Object> resultList =session.createCriteria(MatchStatus.class, "ms").createCriteria("ms.match", "Match", JoinType.RIGHT_OUTER_JOIN)
 				.setProjection(Projections.projectionList().add(Projections.property("Match.id").as("id"))
@@ -198,7 +201,7 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	public void addNewMatch(Match match) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		session.save(match);
 		tx.commit();
@@ -214,7 +217,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@SuppressWarnings("unchecked")
 	public void saveMatchResult(int id, String response) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session.createQuery("from MatchStatus where match_id = :id");
 		q.setParameter("id", id);
 		List<MatchStatus> res = q.list();
@@ -258,7 +261,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> getPredictionsForOthers(String matchId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 
 		List<HashMap<String, String>> maplist = new ArrayList<HashMap<String, String>>();
 
@@ -287,7 +290,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@SuppressWarnings("unchecked")
 	public void adjustPreddictions(int matchId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		LeagueUser luser = null;
 		LeagueUserMatch lum = null;
@@ -363,7 +366,7 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	private String getLoosingTeamForMatch(int id, String winningTeam) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Match m = (Match) session.get(Match.class, id);
 		session.close();
 		if (winningTeam.equals("DRAW")) {
@@ -380,7 +383,7 @@ public class MatchServiceImpl implements MatchService {
 	@SuppressWarnings("unchecked")
 	private void calculateAndUpdateLeagueBalances(String winningTeam,
 			String loosingTeam, int matchId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		LeagueUser luser = null;
 		LeagueUserMatch lum = null;
@@ -517,7 +520,7 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	private String checkMatchAdjustmentStatus(int id) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session
 				.createSQLQuery("select CAST(count(*) as CHAR(20)) as num from league_user_match where "
 						+ "bidFlag = 0 and match_id = :matchId");

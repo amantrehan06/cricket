@@ -30,8 +30,8 @@ public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	public LoginServiceImpl loginServiceImpl = new LoginServiceImpl();
-	public MatchServiceImpl matchServiceImpl = new MatchServiceImpl();
+	@Autowired LoginServiceImpl loginServiceImpl;
+	@Autowired MatchServiceImpl matchServiceImpl;
 
 	@Resource(name="teamsName")
 	private List<String> teamNameList;

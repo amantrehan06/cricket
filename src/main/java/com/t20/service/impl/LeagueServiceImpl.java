@@ -12,6 +12,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.t20.models.League;
 import com.t20.models.LeagueUser;
@@ -20,12 +22,12 @@ import com.t20.models.Match;
 import com.t20.models.User;
 import com.t20.service.LeagueService;
 import com.t20.util.HibernateUtil;
-
+@Service
 public class LeagueServiceImpl implements LeagueService{
-
+	@Autowired HibernateUtil hibernateUtil;
 	@SuppressWarnings("unchecked")
 	public List<League> getAllLeague() {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session.createQuery("from League");
 		List<League> leagueList= q.list();
 		session.close();
@@ -34,7 +36,7 @@ public class LeagueServiceImpl implements LeagueService{
 
 	@SuppressWarnings("unchecked")
 	public List<LeagueUser> getLeaguesAndBalanceForUser(int userId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session.createQuery("from LeagueUser where user_id = :userId");
 		q.setParameter("userId", userId);
 		List<LeagueUser> leagueUserList= q.list();
@@ -45,7 +47,7 @@ public class LeagueServiceImpl implements LeagueService{
 	@SuppressWarnings("unchecked")
 	public boolean addNewLeague(String leagueName, int userId, String randomCode) {
 		boolean saveFlag = false;
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction  = session.beginTransaction();
 		League league = new League();
 		LeagueUser leagueUser = new LeagueUser();
@@ -86,7 +88,7 @@ public class LeagueServiceImpl implements LeagueService{
 
 	@SuppressWarnings("unchecked")
 	public List<LeagueUser> getAllUsersForLeague(int leagueId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		
 		Query q = session.createQuery("from LeagueUser where league_id = :leagueId order by available_balance ASC");
 		q.setParameter("leagueId", leagueId);
@@ -97,7 +99,7 @@ public class LeagueServiceImpl implements LeagueService{
 	
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String,String>> getOthersBidAndPlayAmount(int leagueId, int matchId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		List<HashMap<String,String>> finalResult = new ArrayList<HashMap<String,String>>();
 		Query q = session.createSQLQuery("select ucase(concat(u.firstName,' ', u.lastName)) name, playAmount, prediction "
 				+ "from league_user_match lu inner join user u on u.id = lu.user_id "
@@ -125,7 +127,7 @@ public class LeagueServiceImpl implements LeagueService{
 	@SuppressWarnings("unchecked")
 	public boolean joinLeague(int leagueId, String randomCode, int userId) {
 		boolean joinFlag = false;
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction  = session.beginTransaction();
 		
 		LeagueUser leagueUser = new LeagueUser();
@@ -160,7 +162,7 @@ public class LeagueServiceImpl implements LeagueService{
 	}
 
 	public boolean checkLeagueEnrollmentForUser(int userId, int leagueId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		boolean joinFlag = false;
 		Query q = session.createQuery("from LeagueUser where user_id = :userId and league_id = :leagueId");
 		q.setParameter("userId", userId);
@@ -176,7 +178,7 @@ public class LeagueServiceImpl implements LeagueService{
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> getLeagueMatchesForUser(int userId,
 			int leagueId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		//Query q = session.createQuery("from LeagueUserMatch where league_id = :leagueId and user_id = :userId");
 		Query q = session.createSQLQuery("select l.bidFlag,playAmount,prediction,m.id,m.matchDetails,m.matchPlayDate,"
 				+ "m.team1,m.team2,ms.status,l.league_id from league_user_match l inner join iplmatch m on "
@@ -242,7 +244,7 @@ public class LeagueServiceImpl implements LeagueService{
 
 	public boolean saveBidForUser(int userId, int leagueId, int matchId, int playAmount, String prediction) {
 		boolean bidSaveFlag = false;
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		Query q = session.createQuery("from LeagueUserMatch where user_id = :userId and league_id = :leagueId and match_id = :matchId");
 		q.setParameter("userId", userId);
@@ -275,7 +277,7 @@ public class LeagueServiceImpl implements LeagueService{
 	}
 
 	public int getAvailableBalanceForUserForLeague(int userId, int leagueId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session.createQuery("from LeagueUser where user_id = :userId and league_id = :leagueId");
 		q.setParameter("userId", userId);
 		q.setParameter("leagueId", leagueId);
@@ -285,7 +287,7 @@ public class LeagueServiceImpl implements LeagueService{
 	}
 
 	public String getLeagueName(int leagueId) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		League l = (League)session.get(League.class, leagueId);
 		session.close();
 		return l.getLeague_name();
@@ -293,7 +295,7 @@ public class LeagueServiceImpl implements LeagueService{
 
 	@SuppressWarnings("unchecked")
 	public String getBidStats(int leagueId, int matchId, String team) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Query q = session.createSQLQuery("select CAST(COALESCE(sum(playAmount),0) AS CHAR(50)) as playAmount from league_user_match where league_id = :leagueId and match_id = :matchId and prediction = :team");
 		q.setParameter("leagueId", leagueId);
 		q.setParameter("matchId", matchId);

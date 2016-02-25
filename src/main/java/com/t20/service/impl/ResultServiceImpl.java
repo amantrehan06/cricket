@@ -7,15 +7,17 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.t20.service.ResultService;
 import com.t20.util.HibernateUtil;
-
+@Service
 public class ResultServiceImpl implements ResultService{
-
+	@Autowired HibernateUtil hibernateUtil;
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showResultForUser(int userid) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
 		
 		HashMap<String,String> resMap = new HashMap<String, String>(); 
@@ -53,7 +55,7 @@ public class ResultServiceImpl implements ResultService{
 
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showAllResult0() {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
 		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id from "
 				+ "(select count(*) win,user_id id from user_match u inner join match_status "
@@ -97,7 +99,7 @@ public class ResultServiceImpl implements ResultService{
 	
 	/*@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showAllResult1() {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
 		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName from "
 				+ "(select count(*) win,user_id id from user_match u inner join match_status "
@@ -131,7 +133,7 @@ public class ResultServiceImpl implements ResultService{
 	
 	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showAllResult2() {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
 		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName from "
 				+ "(select count(*) win,user_id id from user_match u inner join match_status "

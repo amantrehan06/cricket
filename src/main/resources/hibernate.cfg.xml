@@ -1,27 +1,28 @@
-<!DOCTYPE hibernate-configuration PUBLIC
+ <!-- <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
 <hibernate-configuration>
-    <session-factory>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/cricket</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">12345</property>
-        <property name="connection.pool_size">1</property>
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="current_session_context_class">thread</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-        <property name="show_sql">false</property>
-        
-        
-        <mapping class="com.t20.models.User"/>
-        <mapping class="com.t20.models.Match"/>
-        <mapping class="com.t20.models.Team"/>
-        <mapping class="com.t20.models.MatchStatus"/>
-        <mapping class="com.t20.models.UserMatch"/>
-        <mapping class="com.t20.models.League"/>
-        <mapping class="com.t20.models.LeagueUser"/>
-        <mapping class="com.t20.models.LeagueUserMatch"/>
-        
-    </session-factory>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/cricket</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">12345</property>
+		<property name="connection.pool_size">1</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="show_sql">false</property>
+
+
+		<mapping class="com.t20.models.User" />
+		<mapping class="com.t20.models.Match" />
+		<mapping class="com.t20.models.Team" />
+		<mapping class="com.t20.models.MatchStatus" />
+		<mapping class="com.t20.models.UserMatch" />
+		<mapping class="com.t20.models.League" />
+		<mapping class="com.t20.models.LeagueUser" />
+		<mapping class="com.t20.models.LeagueUserMatch" />
+
+	</session-factory>
 </hibernate-configuration>
+ -->

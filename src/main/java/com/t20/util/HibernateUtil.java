@@ -5,9 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public final class HibernateUtil {
-
+@Component
+public class HibernateUtil {
+/*
 	private static HibernateUtil hibernateUtil;
 
 	private HibernateUtil() {
@@ -19,20 +22,21 @@ public final class HibernateUtil {
 			hibernateUtil = new HibernateUtil();
 		}
 		return hibernateUtil;
-	}
+	}*/
 
-	private static SessionFactory sessionFactory;
-    private static ServiceRegistry serviceRegistry;
+	@Autowired
+	private SessionFactory sessionFactory;
+   // private static ServiceRegistry serviceRegistry;
 	
 	private SessionFactory createSessionFactory() {
-
+/*
 		if(sessionFactory ==null) {
 			Configuration configuration = new Configuration();
         	configuration.configure();
         	serviceRegistry = new ServiceRegistryBuilder().applySettings(
         			configuration.getProperties()).buildServiceRegistry();
         	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		}
+		}*/
 		return sessionFactory;
 	}
 

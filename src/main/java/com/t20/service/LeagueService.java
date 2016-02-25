@@ -3,8 +3,11 @@ package com.t20.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.t20.models.League;
 import com.t20.models.LeagueUser;
+
 
 public interface LeagueService {
 	

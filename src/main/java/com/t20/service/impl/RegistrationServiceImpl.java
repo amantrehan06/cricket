@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.t20.models.Match;
 import com.t20.models.User;
@@ -12,11 +14,12 @@ import com.t20.models.UserMatch;
 import com.t20.service.RegistrationService;
 import com.t20.util.HibernateUtil;
 
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
-
+	@Autowired HibernateUtil hibernateUtil;
 	@SuppressWarnings("unchecked")
 	public boolean registerNewUser(User user) {
-		Session session = HibernateUtil.getInstance().getSession();
+		Session session = hibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		Query query1 = session.createQuery("from User where email_id = :email_id");
 		query1.setParameter("email_id", user.getEmail_id());

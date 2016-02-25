@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ import com.t20.util.Validations;
 public class MatchController {
 	private static final Logger logger = LoggerFactory.getLogger(MatchController.class);
 
-	MatchServiceImpl matchServiceImpl = new MatchServiceImpl();
+	@Autowired MatchServiceImpl matchServiceImpl;
 
 	@RequestMapping(value = "/prediction", method = RequestMethod.GET, params = {"resp", "match" })
 	public ModelAndView saveUserPrediction(@RequestParam String resp,@RequestParam String match, HttpServletRequest httpRequest) {
