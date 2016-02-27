@@ -62,7 +62,7 @@ public class LoginController {
 				redirectAttributes.addFlashAttribute("success", "Logged out successfully");
 			}
 			else{
-				redirectAttributes.addFlashAttribute("failure", "Session Expired, Please re-login");
+				redirectAttributes.addFlashAttribute("failure", "Oops something went wrong, please re-login");
 			}
 			request.getSession(false).setAttribute("userObj",null);
 			request.getSession(false).invalidate();
@@ -89,7 +89,7 @@ public class LoginController {
 		if(loggedUser==null){
 			String errorMsg="email or password is incorrect";
 			logger.info("User is Null");
-			modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);
+			/*modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);*/
 			return modelAndView;
 		}
 	
