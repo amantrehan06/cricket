@@ -21,13 +21,7 @@
 		var grid = arr[0].toString().replace("]", "").replace("[","").replace("[", "");
 		grid = grid.substr(grid.indexOf("-") + 1,grid.length);
 		var grVal = parseInt(grid)+1;
-		var size = ${size};
-		var length = size *35;
-		
-		/* if(length<1000){
-			length=1000
-		} */
-		
+			
 		for (var i = 0; i < arr.length; i++) {
 			var completeText = arr[i].toString().replace("]", "").replace("[","").replace("[", "");
 			var name = completeText.substr(0, completeText.indexOf("-"));
@@ -42,7 +36,7 @@
 				bottom : 0,
 				width : '60%'
 			},
-			 height:length, 
+			 height:'300', 
 			hAxis : {
 				title : 'Correct Predictions',
 				minValue : 0,

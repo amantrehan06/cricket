@@ -47,7 +47,7 @@ public class RegistrationController {
 	*/		modelAndView.setViewName("index");
 			modelAndView.addObject("success", "You have been successfully registered!!");
 		}else{
-			modelAndView.addObject("failure", "Sorry! Email Id already Registered");
+			modelAndView.addObject("failure", "Sorry! Email Id or Unique Id already Registered");
 			modelAndView.setViewName("index");
 		}
 		

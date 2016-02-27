@@ -27,7 +27,7 @@
               <input type="text" name="email_id" class="form-control input-lg" placeholder="Email" required>
             </div>
             <div class="form-group">
-              <input type="text" name="password" class="form-control input-lg" placeholder="Password" required>
+              <input type="password" name="password" class="form-control input-lg" placeholder="Password" required>
             </div>
             <div class="form-group">
               <input type="text" name="emp_id" class="form-control input-lg" placeholder="Unique Id" required>
@@ -36,7 +36,7 @@
               <input type="text" name="firstName" class="form-control input-lg" placeholder="First Name" required>
             </div>
             <div class="form-group">
-              <input type="password"  name="firstName" class="form-control input-lg" placeholder="Last Name" required>
+              <input type="text"  name="lastName" class="form-control input-lg" placeholder="Last Name" required>
             </div>
             <div class="form-group">
               <button class="btn btn-primary btn-lg btn-block" value="Register">Register</button>

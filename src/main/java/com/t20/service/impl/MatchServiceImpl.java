@@ -74,28 +74,13 @@ public class MatchServiceImpl implements MatchService {
 				matchdate = cal.getTime();
 				currdate = (Date) formatter.parse(currDateString);
 			} catch (ParseException e) {
+				e.printStackTrace();
 			}
 			if (!currdate.after(matchdate)) {
 				session.update(ums);
 				successflag = true;
 				tx.commit();
-			} /*
-			 * else { MailUtil.sendEmail( u.getEmail_id(), "Hi " +
-			 * u.getFirstName() + " " + u.getLastName() + "\n\n" +
-			 * "There is a false Request for " +
-			 * "prediction from your account. You cannot Preddict for this match as this match is already over. "
-			 * + "Please do not post such requests in future." + "\n\n" +
-			 * "Regards," + "\n" + "IPL ADMIN",
-			 * "YOU MIGHT BE DISQUALIFIED - DON NOT POST FALSE!!"); }
-			 * MailUtil.sendEmail( u.getEmail_id(), "Hi " + u.getFirstName() +
-			 * " " + u.getLastName() + "\n\n" + "You have predicted ** " +
-			 * response + " ** as the Winner/Result !! " + "\n" +
-			 * "This is for Match - \"" + m.getMatchDetails() +
-			 * "\" to be played on " + m.getMatchPlayDate() + "\n\n" +
-			 * "Regards," + "\n" + "IPL ADMIN", "PREDICTED - Match No. " +
-			 * m.getMatchNumber() + " - " + m.getTeam1() + " VS " +
-			 * m.getTeam2());
-			 */
+			} 
 		}
 		session.close();
 		return successflag;

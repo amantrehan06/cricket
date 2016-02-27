@@ -8,10 +8,10 @@
  
 <style type="text/css">
 .match1{
-background-color: #A9E2F3
+background-color: #FFFFFF
 }
 .match2{
-background-color: #E1F5A9
+background-color: #FFFFFF
 }
 </style>
 </head>

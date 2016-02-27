@@ -35,7 +35,7 @@
   			</h4>
             <h4><span class="glyphicon glyphicon-phone"><form:label class="text-center" ></span>    +91 9811662335</form:label><br>
             </h4>
-            <h4><span class="glyphicon glyphicon-envelope"></span><form:label > amantrehan06@gmail.com</form:label>
+            <h4><span class="glyphicon glyphicon-envelope"></span><form:label > amandeep.trehan@yatra.com</form:label>
             </h4>
             </div>
          

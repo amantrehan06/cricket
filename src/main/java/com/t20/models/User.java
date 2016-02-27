@@ -19,13 +19,13 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column/*(unique=true,nullable=false)*/
+	@Column(unique=true,nullable=false)
 	private String email_id;
 	
 	@Column(nullable=false)
 	private String password;
 	
-	@Column/*(unique=true,nullable=false)*/
+	@Column(unique=true,nullable=false)
 	private String emp_id;
 	
 	@Column(nullable=false)
