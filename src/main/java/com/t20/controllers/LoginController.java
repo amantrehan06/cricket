@@ -89,7 +89,7 @@ public class LoginController {
 		if(loggedUser==null){
 			String errorMsg="email or password is incorrect";
 			logger.info("User is Null");
-			modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);
+			/*modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);*/
 			return modelAndView;
 		}
 	
