@@ -36,6 +36,8 @@ public class RegistrationController {
 		modelAndView.setViewName("redirect:/logout");
 		if(Validations.isNullorEmpty(user.getEmail_id(),user.getPassword(),user.getEmp_id(),user.getFirstName(),user.getLastName())){
 			logger.info("Input parameters are null or empty");
+			String errorMsg="input parameters are empty, please re enter";
+			modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);
 			return modelAndView;
 		}
 		
