@@ -73,7 +73,11 @@
 	<div align="right" style="margin: 2%">
 	<!-- 	<p align="center" class="form-style lead">YOUR FRIENDS PREDICTIONS FOR THIS MATCH</p> -->
 		<%@include file="includes/navigation.jsp"%>
-		<h3 align="center">Match - ${match}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date - ${date}</h3>
+		<h3 style="align:centre;">
+		<span class="label label-primary" style="margin-left:27%;">
+		Match - ${match}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date - ${date}
+		</span>
+		</h3>
 		<br/>
 		<p align="center"><button id="stats" class="btn btn-primary">Show Stats</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button id="overall" class ="btn btn-primary">Show Predictions</button>
