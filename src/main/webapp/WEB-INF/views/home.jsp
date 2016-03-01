@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>T20 2016 Home</title>
+<title>World Cup T20 Home</title>
  
 <style type="text/css">
 .match1{
