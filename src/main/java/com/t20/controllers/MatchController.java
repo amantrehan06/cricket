@@ -146,8 +146,9 @@ public class MatchController {
 
 				String match = maplist.get(0).get("details");
 				String date = maplist.get(0).get("playDate");
+				int size = match.split(" ").length;
 				String team1 = match.split(" ")[0];
-				String team2 = match.split(" ")[2];
+				String team2 = match.split(" ")[size-1];
 
 				for (HashMap<String, String> tempMap : maplist) {
 					if (tempMap.get("prediction").equals(team1)) {
