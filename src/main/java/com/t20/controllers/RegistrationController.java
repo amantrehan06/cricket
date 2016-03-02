@@ -2,8 +2,7 @@ package com.t20.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +19,7 @@ import com.t20.util.Validations;
 public class RegistrationController {
 
 	@Autowired RegistrationServiceImpl registrationServiceImpl;
-	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+	private static final Logger logger = Logger.getLogger(RegistrationController.class);
 
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -42,6 +41,7 @@ public class RegistrationController {
 		}
 		
 		if (registrationServiceImpl.registerNewUser(user)) {
+			logger.info("User registered successfully: "+user.getEmail_id());
 		/*	MailUtil.sendEmail(user.getEmail_id(),"Hi " + user.getFirstName() + " " + user.getLastName() + "\n\n"
 							+ "Thanks for Registering on World Cup T20  2016 Application. Start Predicting now!!" + "\n\n"
 							+ "Regards," + "\n" + "IPL ADMIN" + "\n\n" + "http://www.sportcasts.in/t20",
@@ -49,6 +49,7 @@ public class RegistrationController {
 	*/		modelAndView.setViewName("index");
 			modelAndView.addObject("success", "You have been successfully registered!!");
 		}else{
+			logger.info("User registration failed: "+user.getEmail_id());
 			modelAndView.addObject("failure", "Sorry! Email Id or Unique Id already Registered");
 			modelAndView.setViewName("index");
 		}

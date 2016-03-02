@@ -8,8 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ import com.t20.util.Validations;
 
 @Controller
 public class MatchController {
-	private static final Logger logger = LoggerFactory.getLogger(MatchController.class);
+	private static final Logger logger = Logger.getLogger(MatchController.class);
 
 	@Autowired MatchServiceImpl matchServiceImpl;
 
@@ -42,10 +41,12 @@ public class MatchController {
 		User user = (User) httpRequest.getSession(false).getAttribute("userObj");
 		if (user.getIsAdmin().equals("N")) {
 			if (matchServiceImpl.saveMatchPrediction(Integer.parseInt(match), resp, user.getId())) {
+				logger.info("Match Prediction saved successfully: "+match + " ,"+resp + " ,"+user.getEmail_id());
 				List<HashMap<String, String>> maplist = matchServiceImpl.getAllMatchesForUser(user.getId());
 				modelAndView.addObject("matchList", maplist);
 				modelAndView.setViewName("redirect:/home");
 			} else {
+				logger.info("Match Prediction save failed: "+match + " ,"+resp + " ,"+user.getEmail_id());
 				modelAndView.setViewName("redirect:/logout");
 			}
 		}
@@ -114,6 +115,7 @@ public class MatchController {
 
 		User user = (User) request.getSession(false).getAttribute("userObj");
 		if (user.getIsAdmin().equals("Y")) {
+			logger.info("Match result saved with details: "+match+" ,"+resp);
 			matchServiceImpl.saveMatchResult(Integer.parseInt(match), resp);
 			List<HashMap<String, String>> maplist = matchServiceImpl.getAllMatchesForAdmin();
 			modelAndView.addObject("matchList", maplist);

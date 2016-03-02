@@ -8,8 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +26,7 @@ import com.t20.util.Validations;
 @Controller
 public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = Logger.getLogger(LoginController.class);
 
 	@Autowired LoginServiceImpl loginServiceImpl;
 	@Autowired MatchServiceImpl matchServiceImpl;
@@ -79,20 +78,23 @@ public class LoginController {
 		String userEmail = request.getParameter("userEmail");
 		String userPassword = request.getParameter("userPassword");
 		// Check for Null && Blank
+		
 		if (Validations.isNullorEmpty(userEmail) || Validations.isNullorEmpty(userPassword)) {
-			logger.info("Email or password is blank or Null");
+			logger.info("Email or password is blank or Null: "+userEmail +" ,"+userPassword);
 			return modelAndView;
 		}
-			
+		
+		logger.info("User attemped logged in: "+userEmail);
 		// Get LoggedIn User
 		User loggedUser = loginServiceImpl.loginAuthentication(userEmail,userPassword);
 		if(loggedUser==null){
 			String errorMsg="email or password is incorrect";
-			logger.info("User is Null");
+			logger.info("Incorrect credentials username, password: "+userEmail +" ,"+userPassword);
 			/*modelAndView.setViewName("redirect:/logout?errorMsg="+errorMsg);*/
 			return modelAndView;
 		}
 	
+		logger.info("User logged in successfully: "+userEmail);
 		HttpSession session = request.getSession(true);
 		modelAndView.setViewName("home");
 		session.setAttribute("username", loggedUser.getFirstName() + " " + loggedUser.getLastName());
