@@ -149,14 +149,15 @@ public class MatchController {
 				String match = maplist.get(0).get("details");
 				String date = maplist.get(0).get("playDate");
 				int size = match.split(" ").length;
-				String team1 = match.split(" ")[0];
-				String team2 = match.split(" ")[size-1];
+				String team1 = match.split(" ")[0].trim();
+				String team2 = match.split(" ")[size-1].trim();
 
 				for (HashMap<String, String> tempMap : maplist) {
-					if (tempMap.get("prediction").equals(team1)) {
+					String prediction = tempMap.get("prediction").trim();
+					if (prediction.equals(team1)) {
 						team1Count++;
 					}
-					if (tempMap.get("prediction").equals("NOT PREDICTED YET")) {
+					if (prediction.equals("NOT PREDICTED YET")) {
 						nPCount++;
 					}
 				}
