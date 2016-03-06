@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,7 +30,8 @@ import com.t20.util.HibernateUtil;
 @Service
 public class MatchServiceImpl implements MatchService {
 	@Autowired HibernateUtil hibernateUtil;
-
+	Logger logger = Logger.getLogger(MatchServiceImpl.class);
+	
 	public boolean saveMatchPrediction(int id, String response, int userId) {
 
 		boolean successflag = false;
@@ -40,7 +42,7 @@ public class MatchServiceImpl implements MatchService {
 
 		Match m = (Match) session.get(Match.class, id);
 		User u = (User) session.get(User.class, userId);
-		um.setMatch(m);
+		um.setMatch(m);		
 		um.setUser(u);
 		// Check for already Saved Match Status
 		Query q = session
@@ -76,6 +78,7 @@ public class MatchServiceImpl implements MatchService {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+			logger.info("Current/Prediction Date: "+currdate +" - Match Date: "+matchdate);
 			if (!currdate.after(matchdate)) {
 				session.update(ums);
 				successflag = true;

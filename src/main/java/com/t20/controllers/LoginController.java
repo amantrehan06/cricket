@@ -47,6 +47,11 @@ public class LoginController {
 		return "contact";
 	}
 	
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String prepareFormNotice(HttpServletRequest request) {
+		return "notice";
+	}
+	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView doLogout(HttpServletRequest request,RedirectAttributes redirectAttributes) {

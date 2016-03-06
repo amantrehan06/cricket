@@ -60,6 +60,7 @@ if (sc.getAttribute("message")!= null){message=sc.getAttribute("message").toStri
               <button class="btn btn-primary btn-lg btn-block">Sign In</button>
               <span class="pull-right"><a href="/t20/register">New User Registration</a></span>
                <span><a href="/t20/contact">Need help?</a></span> 
+               <span><br><a href="/t20/notice">Terms and Condition</a></span> 
               <p style="color: red"><%=message%></p>
             </div>
             
