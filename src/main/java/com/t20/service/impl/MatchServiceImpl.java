@@ -173,8 +173,10 @@ public class MatchServiceImpl implements MatchService {
 					e.printStackTrace();
 				}
 				if (currdate.after(matchdate)) {
+					result.put("matchEnable", "e");
 					result.put("en", "d");
 				} else {
+					result.put("matchEnable", "d");
 					result.put("en", "e");
 				}
 				if (Integer.parseInt(result.get("id").toString()) <= 30) {

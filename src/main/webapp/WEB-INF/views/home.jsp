@@ -119,8 +119,21 @@ background-color: #FFFFFF
 				<c:when test="${row.c== 1}">
 					<tr class="match1">
 						<td><%=count%></td>
-						<td><a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
+						
+						
+						<td>
+						<c:if test="${row.matchEnable == 'e'}">
+							<a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a>
+						</c:if>
+						<c:if test="${row.matchEnable == 'd'}">
+							${row.matchDetails}
+						</c:if>
+						</td>
+						
 						<td>${row.matchPlayDate}</td>
+						
+						
+						
 						<td><c:choose>
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
@@ -173,7 +186,16 @@ background-color: #FFFFFF
 					<c:otherwise>
 					<tr class="match2">
 						<td><%=count%></td>
-						<td><a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a></td>
+						
+						<td>
+						<c:if test="${row.matchEnable == 'e'}">
+							<a href="/t20/allPredictions?matchId=${row.id}">${row.matchDetails}</a>
+						</c:if>
+						<c:if test="${row.matchEnable == 'd'}">
+							${row.matchDetails}
+						</c:if>
+						</td>
+						
 						<td>${row.matchPlayDate}</td>
 						<td><c:choose>
 								<c:when test="${user == 'nadmin'}">
