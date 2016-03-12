@@ -27,18 +27,17 @@
           <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
           <h1 class="text-center">Terms and Condition</h1>
       </div>
-      <div class="modal-body">   
-          
-            <div class="form-group" style="margin-left:5%; text:bold">
-           
-  			<h4><form:label class="text-center" >* Its a fun based prediction event for internal usage.  </form:label><br>
-  			</h4>
-  			
-  			<h4><form:label class="text-center" >* No money is involved. </form:label><br>
-  			</h4>
-            
-            </div>
+      <div class="modal-body">  
+    
          
+            <div class="form-group" style="margin-left:5%; text:bold">    			
+            	<ul>
+            	 <h4>   RULES......PLEASE READ THEM CAREFULLY !!</h4>
+            		<li>This is not a betting website and no money is involved at all.</li>
+					<li>This is purely fun based prediction event for internal usage.</li>
+					<li>Whoever joins has his/her own will to participate.</li>
+				</ul>
+            </div>
          <span><a href="/t20/">Back</a></span> 
       </div>
       <div class="modal-footer">
