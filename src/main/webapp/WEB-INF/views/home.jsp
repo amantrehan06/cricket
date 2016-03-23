@@ -138,13 +138,13 @@ background-color: #FFFFFF
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
 										<a href="/t20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
-										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/t20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
+										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>
+										
 									</c:if>
 									<c:if test="${row.en == 'd'}">
 										<span style="color: #585858;">${row.team1}&nbsp;/
-										${row.team2}&nbsp;/
-										DRAW</span>
+										${row.team2}
+										</span>
 									</c:if>
 								</c:when>
 								<c:otherwise>
@@ -152,8 +152,8 @@ background-color: #FFFFFF
 										<a
 											href="/t20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a
-											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/t20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
+											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>
+										
 									</c:if>
 									<c:if test="${row.status != 'NULL'}">
 										${row.status}
@@ -201,13 +201,12 @@ background-color: #FFFFFF
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
 										<a href="/t20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
-										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/t20/prediction?resp=DRAW&match=${row.id}">DRAW</a>
+										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>
 									</c:if>
 									<c:if test="${row.en == 'd'}">
 										<span style="color: #585858;">${row.team1}&nbsp;/
-										${row.team2}&nbsp;/
-										DRAW</span>
+										${row.team2}
+										</span>
 									</c:if>
 								</c:when>
 								<c:otherwise>
@@ -215,8 +214,7 @@ background-color: #FFFFFF
 										<a
 											href="/t20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a
-											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>&nbsp;/
-										<a href="/t20/saveMatchResult?resp=DRAW&match=${row.id}">DRAW</a>
+											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>
 									</c:if>
 									<c:if test="${row.status != 'NULL'}">
 										${row.status}
