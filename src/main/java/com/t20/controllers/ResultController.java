@@ -87,7 +87,7 @@ public class ResultController {
 		
 	}
 	
-	/*@RequestMapping("/graph1")
+	@RequestMapping("/graph1")
 	public ModelAndView graph1(HttpServletRequest request){
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -107,9 +107,9 @@ public class ResultController {
 
 		return modelAndView;
 		
-	}*/
+	}
 	
-	/*@RequestMapping("/graph2")
+	@RequestMapping("/graph2")
 	public ModelAndView graph2(HttpServletRequest request){
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -129,5 +129,5 @@ public class ResultController {
 
 		return modelAndView;
 
-	}*/
+	}
 }

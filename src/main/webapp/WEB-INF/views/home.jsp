@@ -88,6 +88,8 @@ background-color: #FFFFFF
 			<h3 align="center" style="color: red;">This Match is already adjusted</h3>
 		</c:if>
 	</c:if>
+	
+	<h3> <span class="label label-default">League 1</span></h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -183,9 +185,49 @@ background-color: #FFFFFF
 						</c:if>
 					</tr>
 					</c:when>
-					<c:otherwise>
+					
+					</c:choose>
+					<%count++;%>
+				</c:forEach>
+			</tbody>
+		</table>
+		
+		
+		
+		<br>
+		<h3> <span class="label label-default">League 2</span></h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Match No.</th>
+					<th>Details</th>
+					<th>Match Date</th>
+					<c:choose>
+						<c:when test="${user=='nadmin'}">
+							<th>Your Pick</th>
+						</c:when>
+						<c:otherwise>
+							<th>Winning Team</th>
+							<th>League Adjustments</th>
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${user == 'nadmin'}">
+						<th>Prediction</th>
+						<th>Result</th>
+					</c:if>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					int count1 = 1;
+				%>
+				<!-- {actual=NULL, c=1, team1=CSK, team2=MUM, matchDetails=NEW MATCH SETUP, en=e, id=1, matchPlayDate=Sat Apr 02 04:11:22  2016, status=NOT PREDICTED YET} -->
+				<c:forEach items="${matchList}" var="row">
+				<c:choose>
+				<c:when test="${row.c== 2}">
 					<tr class="match2">
-						<td><%=count%></td>
+						<td><%=count1%></td>
+						
 						
 						<td>
 						<c:if test="${row.matchEnable == 'e'}">
@@ -197,11 +239,15 @@ background-color: #FFFFFF
 						</td>
 						
 						<td>${row.matchPlayDate}</td>
+						
+						
+						
 						<td><c:choose>
 								<c:when test="${user == 'nadmin'}">
 									<c:if test="${row.en == 'e'}">
 										<a href="/t20/prediction?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a href="/t20/prediction?resp=${row.team2}&match=${row.id}">${row.team2}</a>
+										
 									</c:if>
 									<c:if test="${row.en == 'd'}">
 										<span style="color: #585858;">${row.team1}&nbsp;/
@@ -215,6 +261,7 @@ background-color: #FFFFFF
 											href="/t20/saveMatchResult?resp=${row.team1}&match=${row.id}">${row.team1}</a>&nbsp;/
 										<a
 											href="/t20/saveMatchResult?resp=${row.team2}&match=${row.id}">${row.team2}</a>
+										
 									</c:if>
 									<c:if test="${row.status != 'NULL'}">
 										${row.status}
@@ -225,8 +272,7 @@ background-color: #FFFFFF
 							<td>${row.status}</td>
 						</c:if>
 						<c:if test="${user == 'admin'}">
-						${adjustButtonFlag}
-							<td><form action="/t20/adjust" method="post">
+							<td><form action="" method="post">
 									<c:if test="${row.adjustButtonFlag =='F'}">
 										<input type="submit" value="Adjust" class = "btn btn-primary">
 									</c:if>
@@ -244,12 +290,15 @@ background-color: #FFFFFF
 							<td></td>
 						</c:if>
 					</tr>
-					</c:otherwise>
+					</c:when>					
 					</c:choose>
-					<%count++;%>
+					<%count1++;%>
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		
+		
 		<c:if test="${user == 'admin'}">
 			<div align="center">
 				<h3>Add New Match</h3>

@@ -36,7 +36,7 @@
 				bottom : 0,
 				width : '60%'
 			},
-			height:'1400',
+			height:'1000',
 			hAxis : {
 				title : 'Correct Predictions',
 				minValue : 0,

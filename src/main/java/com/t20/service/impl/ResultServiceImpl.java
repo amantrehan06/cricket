@@ -97,7 +97,7 @@ public class ResultServiceImpl implements ResultService{
 		return listOfMap;
 	}
 	
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<HashMap<String, String>> showAllResult1() {
 		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
@@ -163,6 +163,6 @@ public class ResultServiceImpl implements ResultService{
 			listOfMap.add(result);
 		}
 		return listOfMap;
-	}*/
+	}
 
 }
