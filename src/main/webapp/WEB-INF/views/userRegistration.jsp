@@ -30,7 +30,7 @@
               <input type="password" name="password" class="form-control input-lg" placeholder="Password" required>
             </div>
             <div class="form-group">
-              <input type="text" name="emp_id" class="form-control input-lg" placeholder="Employee Id" required>
+              <input type="text" name="emp_id" class="form-control input-lg" placeholder="Mobile Number" required>
             </div>
             <div class="form-group">
               <input type="text" name="firstName" class="form-control input-lg" placeholder="First Name" required>
