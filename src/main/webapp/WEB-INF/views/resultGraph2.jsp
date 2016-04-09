@@ -26,7 +26,7 @@
 			var completeText = arr[i].toString().replace("]", "").replace("[","").replace("[", "");
 			var name = completeText.substr(0, completeText.indexOf("-"));
 			var win = completeText.substr(completeText.indexOf("-") + 1,completeText.length);
-			data.addRow([name, parseInt(win), 'color:#E1F5A9']);
+			data.addRow([name, parseInt(win), 'color:SteelBlue']);
 		}
 		var options = {
 			title : 'Players Correct Predictions',
@@ -43,7 +43,8 @@
 				gridlines: {count: grVal}
 			},
 			vAxis : {
-				title : 'Players'
+				title : 'Players',
+				textStyle:{fontSize: '12', paddingRight: '100',marginRight: '100'}
 			}
 		};
 

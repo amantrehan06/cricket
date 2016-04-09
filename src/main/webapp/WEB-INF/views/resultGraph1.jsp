@@ -27,9 +27,9 @@
 			var name = completeText.substr(0, completeText.indexOf("-"));
 			var win = completeText.substr(completeText.indexOf("-") + 1,completeText.length);
 			if(i<=3){
-				data.addRow([name, parseInt(win), 'color:green']);
+				data.addRow([name, parseInt(win), 'color:SteelBlue']);
 			}else{
-				data.addRow([name, parseInt(win), 'color:#A9E2F3']);
+				data.addRow([name, parseInt(win), 'color:SteelBlue']);
 			}
 		}
 		var options = {
