@@ -94,7 +94,7 @@ public class MatchServiceImpl implements MatchService {
 		Session session = hibernateUtil.getSession();
 
 		Query q = session.createSQLQuery("select i.id,i.matchDetails,i.matchPlayDate, "
-						+ "i.team1,i.team2,u.predictedStatus status, m.status actual from user_match u inner"
+						+ "i.team1,i.team2,u.predictedStatus status, m.status actual, i.points from user_match u inner"
 						+ " join iplmatch i on i.id = u.match_id inner join match_status m on m.match_id = u.match_id and u.user_id=:id");
 
 		q.setParameter("id", userId);
@@ -112,7 +112,7 @@ public class MatchServiceImpl implements MatchService {
 								.add(Projections.property("Match.matchDetails").as("matchDetails"))
 								.add(Projections.property("Match.matchPlayDate").as("matchPlayDate"))
 								.add(Projections.property("Match.team1").as("team1"))
-								.add(Projections.property("Match.team2").as("team2"))
+								.add(Projections.property("Match.team2").as("team2"))								
 								.add(Projections.property("ms.status").as("status"))).list();
 
 		session.close();
@@ -140,9 +140,10 @@ public class MatchServiceImpl implements MatchService {
 						.replaceAll("2016", "").replaceAll("UTC", ""));
 				result.put("team1", (String) projection[3]);
 				result.put("team2", (String) projection[4]);
-				result.put("status", (String) projection[5]);
+				result.put("status", (String) projection[5]);				
 				if (userFlag.equals("Y")) {
 					result.put("actual", (String) projection[6]);
+					result.put("points", (String) projection[7]);
 				}
 				/*if (userFlag.equals("N")
 						&& Integer.parseInt(result.get("id")) > 30) {
@@ -151,6 +152,10 @@ public class MatchServiceImpl implements MatchService {
 				if (userFlag.equals("N") /*&& Integer.parseInt(result.get("id")) <= 30*/) {
 					result.put("adjustButtonFlag", "T");
 				}
+				
+				
+				
+				
 				// Check for Enable Disable Status
 				DateFormat formatter = new SimpleDateFormat(
 						"yyyy-MM-dd HH:mm:ss");
@@ -179,10 +184,12 @@ public class MatchServiceImpl implements MatchService {
 					result.put("matchEnable", "d");
 					result.put("en", "e");
 				}
-				if (Integer.parseInt(result.get("id").toString()) <= 30) {
+				if (Integer.parseInt(result.get("id").toString()) <= 28) {
 					result.put("c", "1");
-				} else {
+				} else if(Integer.parseInt(result.get("id").toString()) > 28 && Integer.parseInt(result.get("id").toString())<=56 ) {
 					result.put("c", "2");
+				}else{
+					result.put("c", "3");
 				}
 				maplist.add(result);
 			}
