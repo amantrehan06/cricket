@@ -29,14 +29,14 @@
 	</bean>
 	
 	<util:list id="teamsName">
-   				 <value>India</value>
-   				 <value>Pakistan</value>
-   				 <value>Australia</value>
-   				 <value>New Zeland</value>
-   				 <value>Sri Lanka</value>
-   				 <value>South Africa</value>
-   				 <value>West Indies</value>
-   				 <value>England</value>				
+	 			 <value>Delhi</value>
+	 			 <value>Punjab</value>
+   				 <value>Mumbai</value>
+   				 <value>Pune</value>
+   				 <value>Kolkata</value>	
+   				 <value>Bangalore</value>
+   				 <value>Hyderabad</value>   				
+   				 <value>Gujarat</value>				
 	</util:list>
 	
 	

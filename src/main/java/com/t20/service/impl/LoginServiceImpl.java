@@ -2,6 +2,8 @@ package com.t20.service.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,5 +35,46 @@ public class LoginServiceImpl implements LoginService {
 		
 		return list.size() ==1 ? (User)list.get(0) : null;
 	}
+	public boolean isFavTeamPicked(int id) {
+		Session session = hibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		Query query = session.createQuery("from User where favTeam != NULL and id =:id ");
+		
+		query.setParameter("id", id);		
+		
+		List<User> list = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		if(list.size()!=0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean saveFavTeam(int id, String teamSelected) {
+		Session session = hibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
 
+		Query query = session.createQuery("from User where id= :id ");
+
+		query.setParameter("id", id);
+
+		List<User> list = query.list();
+		if (list.size() != 0) {
+			User userFetched = list.get(0);
+			if (userFetched.getFavTeam() == null) {
+				userFetched.setFavTeam(teamSelected);
+				tx.commit();
+				session.close();
+				return true;
+			}
+
+		}
+		
+		return false;
+	}
 }

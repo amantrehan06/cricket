@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -181,5 +180,36 @@ public class LoginController {
 		response.append("]");
 		return response.toString();
 
+	}
+	
+	@RequestMapping(value = "/isFavTeamPicked", method = RequestMethod.GET)
+	public @ResponseBody String isFavTeamPicked(HttpServletRequest request) {
+		try {
+			User user = (User) request.getSession(false).getAttribute("userObj");
+			boolean result = loginServiceImpl.isFavTeamPicked(user.getId());
+			logger.info("isFavTeam picked for " + user.getEmail_id() + " is" + result);
+			return String.valueOf(result);
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		
+		return "true";
+	}
+	
+	
+
+	@RequestMapping(value = "/saveFavTeam", method = RequestMethod.GET)
+	public @ResponseBody String saveFavTeam(HttpServletRequest request) {
+		try {
+			String teamSelected = request.getParameter("selectedTeam");
+			User user = (User) request.getSession(false).getAttribute("userObj");
+			boolean result = loginServiceImpl.saveFavTeam(user.getId(),teamSelected);
+			logger.info("isFavTeam picked for " + user.getEmail_id() + " is" + result);
+			return String.valueOf(result);
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		
+		return "false";
 	}
 }

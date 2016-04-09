@@ -36,7 +36,17 @@ public class User implements Serializable{
 	
 	@Column
 	private String isAdmin;
+	
+	@Column(name="fav_team")
+	private String favTeam;
+	
 
+	public String getFavTeam() {
+		return favTeam;
+	}
+	public void setFavTeam(String favTeam) {
+		this.favTeam = favTeam;
+	}
 	public String getIsAdmin() {
 		return isAdmin;
 	}

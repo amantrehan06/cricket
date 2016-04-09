@@ -25,13 +25,45 @@ background-color: #FFFFFF
    <!-- <link rel="stylesheet" href="/t20/css/jquery-ui-timepicker-addon.css"></link>
     <script src="/t20/js/jquery-ui-timepicker-addon.js"></script>  -->
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
+ --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css">
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal.css">
   <script>
+ 
+  $(function()
+	{
+	 
+	  $("#saveTeam").click(function(){
+		  var value= $( "#selectedTeam option:selected" ).text();
+		  $.ajax({
+			  type: "GET",
+			  url: "/t20/saveFavTeam?selectedTeam="+value,
+			  success: function(result){
+			  
+			  }
+			 });
+		});
+	}	  
+  )
+ 
+  
+  
   $(function() { 
- 	 $('#timedate').datetimepicker();
-  });
+	  $.ajax({
+		  type: "GET",
+		  url: "/t20/isFavTeamPicked",
+		  success: function(result){
+			  isFavPicked = result;
+			  if(isFavPicked=="false"){
+				  $("#myModal").modal();
+					   
+			  }
+			  
+	  }});
+	});
   
   var teamList = "";
   var teamCode = "";
@@ -45,7 +77,7 @@ background-color: #FFFFFF
   
   $.ajax({
 	  type: "GET",
-	  url: "/t20/teamsCode",
+	  url: "/t20/teamCode",
 	  async: false,
 	  success: function(result){
 		  teamCode = JSON.parse(result);
@@ -79,6 +111,57 @@ background-color: #FFFFFF
   
 	<div align="right" style="margin: 2%">
 	<%@include file="includes/navigation.jsp"%>
+	
+	
+	
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pick Your Favourite Team</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+          <div class="form-group">
+ 
+  <select id="selectedTeam" class="form-control">
+    <option>Delhi</option>
+    <option>Punjab</option>
+    <option>Mumbai</option>
+    <option>Pune</option>
+    <option>Kolkata</option>
+    <option>Bangalore</option>
+    <option>Hyderabad</option>
+    <option>Gujarat</option>
+  </select>  
+  <br>
+  <ul>
+  <li>Pick your favorite team.</li>
+  <li>Earn bonus 5 points if your team wins the IPL 2016.</li>
+  </ul>
+ 
+</div>
+
+          <div class="alert alert-danger" role="alert">Warning! Selection cannot be changed later.</div>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           <button id="saveTeam" type="button" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+	
 	<div class="form-style">
 	<c:if test="${adjust != ''}">
 		<c:if test="${adjust == 'P'}">

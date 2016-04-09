@@ -17,22 +17,4 @@
 }
 </style>
 <div>
-<script type="text/javascript">
-var myVar=setInterval(function () {dateTimer()}, 1000);
-var counter = 0;
-function dateTimer() {
-    var now = new Date();
-    now = new Date();
-    year = "" + now.getFullYear();
-    month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
-    day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
-    hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
-    minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
-    second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
-    if (document.getElementById != null){
-    document.getElementById("currdate").innerHTML = "Current Time :"+" "+ year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-    }
-}
-</script>
-
 </div>
