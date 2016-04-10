@@ -57,10 +57,10 @@ public class ResultServiceImpl implements ResultService{
 	public List<HashMap<String, String>> showAllResult0() {
 		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
-		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id from "
-				+ "(select count(*) win,user_id id from user_match u inner join match_status "
-				+ "m on m.status = u.predictedStatus and m.match_id=u.match_id and m.status <> 'NULL' group by user_id) as q right outer "
-				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 1 DESC,3 ASC");
+		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id, q.points from "
+				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl "
+				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' group by user_id) as q right outer "
+				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 6 DESC,1 DESC,3 ASC");
 		
 		List<Object> res= q.list();
 		
@@ -79,6 +79,14 @@ public class ResultServiceImpl implements ResultService{
 			q = session.createSQLQuery("select COALESCE(count(*),0) np from user_match u inner join match_status m on m.match_id=u.match_id and m.status <> 'NULL' and u.user_id = :id and "
 					+ "u.predictedStatus = 'NOT PREDICTED YET'");
 			q.setParameter("id", Integer.parseInt(String.valueOf(columns[4])));
+			
+			String points = "0";
+			if(columns[5]!=null){
+				Double d = (Double)columns[5];
+				points = String.valueOf(d.intValue());
+			}
+			
+			result.put("points",points);
 			List<Object>  resNpScore = q.list();
 			BigInteger np = new BigInteger(resNpScore.get(0).toString());
 			BigInteger npAndWin = np.add(win);
@@ -101,14 +109,14 @@ public class ResultServiceImpl implements ResultService{
 	public List<HashMap<String, String>> showAllResult1() {
 		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
-		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName from "
-				+ "(select count(*) win,user_id id from user_match u inner join match_status "
-				+ "m on m.status = u.predictedStatus and m.match_id=u.match_id and m.status <> 'NULL' and m.match_id <=30  group by user_id) as q right outer "
-				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 1 DESC,3 ASC");
+		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName, q.points from "
+				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl "
+				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' and m.match_id <=28  group by user_id) as q right outer "
+				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 5 DESC,1 DESC,3 ASC");
 		
 		List<Object> res= q.list();
 		
-		q = session.createSQLQuery("select count(*) from match_status where status <> 'NULL' and match_id <=30 ");
+		q = session.createSQLQuery("select count(*) from match_status where status <> 'NULL' and match_id <=28 ");
 		List<Object>  resTotal = q.list();
 		
 		BigInteger total = new BigInteger(resTotal.get(0).toString());
@@ -125,6 +133,7 @@ public class ResultServiceImpl implements ResultService{
 			result.put("name",String.valueOf(columns[2])+" "+String.valueOf(columns[3]));
 			result.put("total", total.toString());
 			result.put("loss", total.subtract(win).toString());
+			result.put("points",String.valueOf(columns[4]));
 			
 			listOfMap.add(result);
 		}
@@ -135,14 +144,21 @@ public class ResultServiceImpl implements ResultService{
 	public List<HashMap<String, String>> showAllResult2() {
 		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
-		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName from "
-				+ "(select count(*) win,user_id id from user_match u inner join match_status "
-				+ "m on m.status = u.predictedStatus and m.match_id=u.match_id and m.status <> 'NULL' and m.match_id > 30  group by user_id) as q right outer "
-				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 1 DESC,3 ASC");
+	/*	Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName, q.points points from"
+				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl"
+				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' and m.match_id > 28  group by user_id) as q right outer "
+				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 5 DESC,1 DESC,3 ASC");
+*/	
+		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName, q.points from "
+				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl "
+				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' and m.match_id >28  group by user_id) as q right outer "
+				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 5 DESC,1 DESC,3 ASC");
+		
+
 		
 		List<Object> res= q.list();
 		
-		q = session.createSQLQuery("select count(*) from match_status where status <> 'NULL' and match_id > 30");
+		q = session.createSQLQuery("select count(*) from match_status where status <> 'NULL' and match_id > 28");
 		List<Object>  resTotal = q.list();
 		
 		BigInteger total = new BigInteger(resTotal.get(0).toString());
@@ -159,6 +175,7 @@ public class ResultServiceImpl implements ResultService{
 			result.put("name",String.valueOf(columns[2])+" "+String.valueOf(columns[3]));
 			result.put("total", total.toString());
 			result.put("loss", total.subtract(win).toString());
+			result.put("points",String.valueOf(columns[4]));
 			
 			listOfMap.add(result);
 		}

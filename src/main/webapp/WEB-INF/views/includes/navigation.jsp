@@ -42,7 +42,7 @@ color: orange;
 <div class="container-fluid">
  <ul class="nav navbar-nav">
         <li><a class="link" href="/t20/home">HOME</a></li>
-        <li><a class="link" href="/t20/myScore">MY SCORE</a></li>
+       <!--  <li><a class="link" href="/t20/myScore">MY SCORE</a></li> -->
         <li><a class="link" href="/t20/allScores">ALL SCORE</a></li>
         <li><a class="link" href="/t20/graph1">LEAGUE 1</a></li>
         <li><a class="link" href="/t20/graph2">LEAGUE 2</a></li> 

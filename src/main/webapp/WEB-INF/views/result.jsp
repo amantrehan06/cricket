@@ -21,6 +21,7 @@
 					<th>Incorrect Predictions&nbsp;&nbsp;&nbsp;&nbsp;+</th>
 					<th>Not Predicted</th>
 					<th>Accuracy Percentage ( % )</th>
+					<th>Points Earned</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,6 +38,7 @@
 						<td>${row.loss}</td>
 						<td>${row.np}</td>
 						<td>${row.ac} &nbsp;%</td>
+						<td>${row.points}</td>
 					</tr>
 					<%
 						count++;
