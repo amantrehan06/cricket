@@ -37,6 +37,12 @@ color: orange;
   ga('send', 'pageview');
 
 </script>
+<script>
+$('rules').click(function() {
+	$("#myRules").modal();
+});
+
+</script>
 <!-- <div class="masthead"> -->
 <div align="center" class="navbar" id="masthead">
 <div class="container-fluid">
@@ -47,6 +53,8 @@ color: orange;
         <li><a class="link" href="/t20/graph1">LEAGUE 1</a></li>
         <li><a class="link" href="/t20/graph2">LEAGUE 2</a></li> 
         <li><a class="link" href="/t20/graph">OVERALL LEAGUE</a></li>
+        <li><a class="link" data-toggle="modal" data-target="#myRules" id="rules" href="#" >RULES</a></li>
+        
         <!-- <li><a class="link" href="/t20/teams">IPL TEAMS</a></li> -->
         <!-- <li><a class="link" href="/t20/league">LEAGUE</a></li>
         <li><a class="link" href="/t20/league/rules">LEAGUE RULES</a></li>-->
@@ -55,11 +63,44 @@ color: orange;
          <ul class="nav navbar-nav navbar-right">
                <li><a class="link" href="/t20/logout">LOGOUT - <%=user.toUpperCase()%></a></li>
             </ul>
-       
+     
+</div>
+</div>
+<!-- Modal -->
+  <div class="modal fade" id="myRules" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Rules</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+          <div class="form-group">
+ 
+ 
+  <br>
+  <ul>
+   <li>All matches from 1-56 are of 1 point.</li>
+   <li>All matches from 57-59 are of 2 point.</li>
+   <li>Final match is of 3 point.</li>
+   <li>Pick one team as your favorite.</li>
+   <li>Earn 2 bonus points if your team wins the IPL 2016.</li>  	
+  </ul>
+ 
+</div>
+
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
       
-</div>
-</div>
-</div>
+    </div>
+  </div>
 <!-- <div align="right" style="padding-right: 5px;">
 <script>app='www.cricwaves.com'; mo="h_p11"; nt="1";   wi ="n";  co ="7"; ad="1";</script>
 <script type="text/javascript" src="http://www.cricwaves.com/cricket/widgets/script/scoreWidgets.js"></script>
