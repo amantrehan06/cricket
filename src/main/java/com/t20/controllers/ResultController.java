@@ -1,6 +1,8 @@
 package com.t20.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -75,6 +77,7 @@ public class ResultController {
 		}
 		
 		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
+		
 		List<String> finalVal = new ArrayList<String>();
 		for (int i = 0; i < resultMap.size(); i++) {
 			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("points") + "]");

@@ -2,6 +2,8 @@ package com.t20.service.impl;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class ResultServiceImpl implements ResultService{
 		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id, q.points from "
 				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl "
 				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' group by user_id) as q right outer "
-				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 6 DESC,1 DESC,3 ASC");
+				+ "join user u on u.id = q.id and u.isAdmin ='N' ");/*order by 6 DESC,1 DESC,3 ASC since sorting done on points*/ 
 		
 		List<Object> res= q.list();
 		
@@ -115,6 +117,13 @@ public class ResultServiceImpl implements ResultService{
 			
 			listOfMap.add(result);
 		}
+		
+			//Sorting the graph based on points
+				Collections.sort(listOfMap, new Comparator<HashMap<String, String>>(){ 
+			        public int compare(HashMap<String, String> one, HashMap<String, String> two) { 
+			            return two.get("points").compareTo(one.get("points"));
+			        } 
+				});
 		return listOfMap;
 	}
 	
