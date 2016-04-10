@@ -77,7 +77,7 @@ public class ResultController {
 		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult0();
 		List<String> finalVal = new ArrayList<String>();
 		for (int i = 0; i < resultMap.size(); i++) {
-			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("points") + "]");
 		}
 		modelAndView.addObject("size",resultMap.size());
 		modelAndView.addObject("finalList", finalVal);
@@ -100,7 +100,7 @@ public class ResultController {
 		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult1();
 		List<String> finalVal = new ArrayList<String>();
 		for (int i = 0; i < resultMap.size(); i++) {
-			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("points") + "]");
 		}
 		modelAndView.addObject("finalList", finalVal);
 		modelAndView.setViewName("resultGraph1");
@@ -122,7 +122,7 @@ public class ResultController {
 		List<HashMap<String, String>> resultMap = resultServiceImpl.showAllResult2();
 		List<String> finalVal = new ArrayList<String>();
 		for (int i = 0; i < resultMap.size(); i++) {
-			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("win") + "]");
+			finalVal.add(i, "[" + resultMap.get(i).get("name") + "-" + resultMap.get(i).get("points") + "]");
 		}
 		modelAndView.addObject("finalList", finalVal);
 		modelAndView.setViewName("resultGraph2");
