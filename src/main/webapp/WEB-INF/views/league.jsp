@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>World Cup T20 League</title>
+<title>IPL 2016 League</title>
 <script type="text/javascript">
 function validateName() {
 	var leagueName = document.getElementById("leagueName").value;

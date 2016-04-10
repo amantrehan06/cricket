@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>World Cup T20 Registration Success</title>
+<title>IPL 2016 Registration Success</title>
 </head>
 <body style="background-color: #E0F2CD">
 <%@include file="includes/header.jsp"%>
