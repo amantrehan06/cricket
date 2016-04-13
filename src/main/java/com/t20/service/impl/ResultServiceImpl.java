@@ -114,7 +114,7 @@ public class ResultServiceImpl implements ResultService{
 			float ac = (Float.parseFloat(win.toString())/(Float.parseFloat(total.toString())))*100F;
 			result.put("ac", String.valueOf(Math.round(ac)));
 			result.put("loss", total.subtract(npAndWin).toString());
-			result.put("favTeam",columns[6].toString());
+			result.put("favTeam",columns[6]==null?"":columns[6].toString());
 			
 			listOfMap.add(result);
 		}
