@@ -81,13 +81,21 @@ $('rules').click(function() {
           <div class="form-group">
  
  
-  <br>
+  <div class="alert alert-info" role="alert">Points Rule !</div>
   <ul>
    <li>All matches from 1-56 are of 1 point.</li>
    <li>All matches from 57-59 are of 2 point.</li>
    <li>Final match is of 3 point.</li>
    <li>Pick one team as your favorite.</li>
    <li>Earn 2 bonus points if your team wins the IPL 2016.</li>  	
+  </ul>
+  <div class="alert alert-info" role="alert">Winner Declaration !</div>
+  <ul>
+   <li>3 winners will be declared through out the tournament.</li>
+   <li>1 winner will be declared from League 1 (1-28).</li>
+  <li>1 winner will be declared from League 2 (29-56).</li>
+   <li>1 winner will be declared from overall tournament, League1 + League2 + Semi's + Finals. (Max points scorer)</li>
+  	
   </ul>
  
 </div>
