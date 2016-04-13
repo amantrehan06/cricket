@@ -59,10 +59,10 @@ public class ResultServiceImpl implements ResultService{
 	public List<HashMap<String, String>> showAllResult0() {
 		Session session = hibernateUtil.getSession();
 		List<HashMap<String, String>> listOfMap = new ArrayList<HashMap<String,String>>();
-		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id, q.points from "
+		Query q = session.createSQLQuery("select q.win, u.emp_id,ucase(u.firstName) firstName,ucase(u.lastName) lastName,u.id, q.points, u.fav_team from "
 				+ "(select count(*) win,user_id id, SUM(ipl.points) points from user_match u inner join match_status m inner join iplmatch ipl "
 				+ "on m.status = u.predictedStatus and m.match_id=u.match_id and ipl.id = u.match_id and m.status <> 'NULL' group by user_id) as q right outer "
-				+ "join user u on u.id = q.id and u.isAdmin ='N' ");/*order by 6 DESC,1 DESC,3 ASC since sorting done on points*/ 
+				+ "join user u on u.id = q.id and u.isAdmin ='N' order by 6 DESC,1 DESC,3 ASC");  
 		
 		List<Object> res= q.list();
 		
@@ -114,6 +114,7 @@ public class ResultServiceImpl implements ResultService{
 			float ac = (Float.parseFloat(win.toString())/(Float.parseFloat(total.toString())))*100F;
 			result.put("ac", String.valueOf(Math.round(ac)));
 			result.put("loss", total.subtract(npAndWin).toString());
+			result.put("favTeam",columns[6].toString());
 			
 			listOfMap.add(result);
 		}

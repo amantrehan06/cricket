@@ -16,12 +16,13 @@
 					<th>Count/Rank</th>
 					<th>Name</th>
 					<th>Unique ID</th>
-					<th>Total Matches Over&nbsp;&nbsp;&nbsp;&nbsp;=</th>
+					<th>Total Matches &nbsp;&nbsp;&nbsp;&nbsp;=</th>
 					<th>Correct Predictions&nbsp;&nbsp;&nbsp;&nbsp;+</th>
 					<th>Incorrect Predictions&nbsp;&nbsp;&nbsp;&nbsp;+</th>
 					<th>Not Predicted</th>
-					<th>Accuracy Percentage ( % )</th>
-					<th>Points Earned</th>
+					<th>Accuracy ( % )</th>
+					<th>Points</th>
+					<th>Team</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +40,7 @@
 						<td>${row.np}</td>
 						<td>${row.ac} &nbsp;%</td>
 						<td>${row.points}</td>
+						<td>${row.favTeam}</td>
 					</tr>
 					<%
 						count++;

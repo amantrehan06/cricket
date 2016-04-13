@@ -184,14 +184,14 @@ public class LoginController {
 	
 	@RequestMapping(value = "/isFavTeamPicked", method = RequestMethod.GET)
 	public @ResponseBody String isFavTeamPicked(HttpServletRequest request) {
-		try {
+		/*try {
 			User user = (User) request.getSession(false).getAttribute("userObj");
 			boolean result = loginServiceImpl.isFavTeamPicked(user.getId());
 			logger.info("isFavTeam picked for " + user.getEmail_id() + " is" + result);
 			return String.valueOf(result);
 		} catch (Exception e) {
 			logger.error(e);
-		}
+		}*/
 		
 		return "true";
 	}
@@ -200,7 +200,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/saveFavTeam", method = RequestMethod.GET)
 	public @ResponseBody String saveFavTeam(HttpServletRequest request) {
-		try {
+	/*	try {
 			String teamSelected = request.getParameter("selectedTeam");
 			User user = (User) request.getSession(false).getAttribute("userObj");
 			boolean result = loginServiceImpl.saveFavTeam(user.getId(),teamSelected);
@@ -208,7 +208,7 @@ public class LoginController {
 			return String.valueOf(result);
 		} catch (Exception e) {
 			logger.error(e);
-		}
+		}*/
 		
 		return "false";
 	}
