@@ -122,7 +122,9 @@ public class ResultServiceImpl implements ResultService{
 			//Sorting the graph based on points
 				Collections.sort(listOfMap, new Comparator<HashMap<String, String>>(){ 
 			        public int compare(HashMap<String, String> one, HashMap<String, String> two) { 
-			            return two.get("points").compareTo(one.get("points"));
+			        	int point1 =Integer.valueOf(one.get("points"));
+			        	int point2 =Integer.valueOf(two.get("points"));
+			            return point2-point1 ;
 			        } 
 				});
 		return listOfMap;
